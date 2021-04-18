@@ -10,7 +10,7 @@ import {ErrorComponent} from './components/error/error.component';
 //DEFINIR RUTAS
 const APP_ROUTES: Routes = [
     {path: '', component: LoginComponent},
-    {path: 'inicio', component: LoginComponent},    
+    {path: 'inicio', component: HomeComponent},    
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'home', component: HomeComponent},
