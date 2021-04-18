@@ -16,12 +16,18 @@ export class CategoryService{
         this.url = global.url;
     }
 
-    register(category, token): Observable<any>{
+    create(category, token): Observable<any>{
         let json = JSON.stringify(category); //Convierte en JSON en String
         let params = 'json='+json;        
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
                                         .set('Authorization', token);
                                         
         return this._http.post(this.url+'category', params, {headers: headers});
+    }
+
+    getCategories(): Observable<any>{        
+        let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+        return this._http.get(this.url+'category', {headers: headers});
     }
 }

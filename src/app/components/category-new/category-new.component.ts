@@ -36,7 +36,7 @@ export class CategoryNewComponent implements OnInit {
     // console.log("Categoria")
     // console.log(this.category);
 
-    this._categoryService.register(this.category, this.token).subscribe(
+    this._categoryService.create(this.category, this.token).subscribe(
       response => {
         if(response.status == "success"){
           this.status = 'success';

@@ -15,9 +15,21 @@
                 <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" [routerLink]="['/inicio']">Inicio <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item" routerLinkActive="active">
+                <!-- <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" [routerLink]="['/crear-categoria']">Categorias</a>
-                </li>                
+                </li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categorias
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" [routerLink]="['/crear-categoria']">Categorias</a>
+                        <div class="dropdown-divider"></div>                        
+                        <span *ngFor="let category of categories">
+                            <a class="dropdown-item" href="#">{{category.name}}</a>
+                        </span>                        
+                    </div>
+                </li>
             </ul>
 
             <ul class="navbar-nav navbar-right" *ngIf="!identity">
