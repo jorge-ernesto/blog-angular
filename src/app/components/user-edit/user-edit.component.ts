@@ -2,6 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
 
+//TODOS LOS PLUGINS DE FROALA
+// Import all Froala Editor plugins.
+import 'froala-editor/js/plugins.pkgd.min.js';
+// Import a single Froala Editor plugin.
+import 'froala-editor/js/plugins/align.min.js';
+// Import a Froala Editor language file.
+import 'froala-editor/js/languages/de.js';
+// Import a third-party plugin.
+import 'froala-editor/js/third_party/font_awesome.min';
+import 'froala-editor/js/third_party/image_tui.min';
+import 'froala-editor/js/third_party/spell_checker.min';
+import 'froala-editor/js/third_party/embedly.min';
+//CERRAR TODOS LOS PLUGINS DE FROALA
+
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
@@ -14,6 +28,15 @@ export class UserEditComponent implements OnInit {
   public status: string;
   public identity;
   public token;
+
+  //OPCIONES DE FROALA
+  public froala_options: Object = {
+    charCounterCount: true,
+    toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+    toolbarButtonsXS: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+    toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+    toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+  };
 
   constructor(
     private _userService: UserService
@@ -40,7 +63,7 @@ export class UserEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(form){   
+  onSubmit(form){
     this._userService.update(this.token, this.user).subscribe(
       response => {        
         if(response.status == "success"){

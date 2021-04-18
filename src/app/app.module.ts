@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {APP_ROUTING} from './app.routing';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {FroalaEditorModule, FroalaViewModule} from 'angular-froala-wysiwyg';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -24,7 +25,8 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
     BrowserModule,
     APP_ROUTING,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
