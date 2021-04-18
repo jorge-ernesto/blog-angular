@@ -53,13 +53,21 @@ export class UserEditComponent implements OnInit {
         "Authorization" : this._userService.getToken()
       }
     },
-    theme: "attachPin",
+    theme: "dragNDrop",
     hideProgressBar: false,
     hideResetBtn: true,
-    hideSelectBtn: false,
+    hideSelectBtn: false,    
+    fileNameIndex : true,
     replaceTexts: {
-      attachPinBtn: 'Sube tu avatar de usuario'
-    }    
+      attachPinBtn: 'Sube tu avatar de usuario',
+      selectFileBtn : ' Seleccionar archivos ' , 
+      resetBtn : ' Restablecer ' , 
+      uploadBtn : ' Subir ' , 
+      dragNDropBox : ' Arrastrar y soltar ' ,       
+      afterUploadMsg_success : ' ¡Subido con éxito! ' , 
+      afterUploadMsg_error : ' ¡Error al cargar ! ' , 
+      sizeLimit : ' Límite de tamaño ' 
+    }
   };
   //CERRAR OPCIONES DE ANGULAR FILE UPLOADER
 
@@ -87,30 +95,48 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
+  }  
 
-  onSubmit(form){
-    // console.log('Usuario');
-    // console.log(this.user);
+  onSubmit(form){ 
+    this.status = "";
 
-    this._userService.update(this.token, this.user).subscribe(
-      response => {        
-        if(response.status == "success"){
-          this.status = "success";
+    
+    this._userService.update(this.user, this.token).subscribe(
+      response => {  
 
+        // console.log('USUARIO:', JSON.stringify(this.user));
+        // console.log('TOKEN:', JSON.stringify(this.token));        
+        console.log('RESPONSE:', JSON.stringify(response));
+                
+        if(response.status == "success"){                                        
           //ACTUALIZAR USUARIO
           if(response.user){
-            this.user = response.user;            
+            this.identity.name        = response.user.name;
+            this.identity.surname     = response.user.surname;
+            this.identity.email       = response.user.email;
+            this.identity.description = response.user.description;
+            this.identity.image       = response.user.image;
           }
 
           //ACTUALIZAR USUARIO EN SESSION          
-          localStorage.setItem("identity", JSON.stringify(response.user));
+          localStorage.setItem("identity", JSON.stringify(this.identity));                   
+          
+          //ACTUALIZAMOS IDENTITY Y TOKEN
+          this.identity = this._userService.getIdentity();
+          this.token = this._userService.getToken();
+          
+          //VERIFICAMOS IDENTITY
+          console.log('IDENTITY:', JSON.stringify(this.identity));
 
-          console.log(response);
+          //MOSTRAMOS MENSAJE DE EXITO
+          this.status = "success";   
+          
+          //REDIRECCION A LA MISMA PAGINA
+          location.reload();
         }else{
           this.status = "error";
-          console.log(response);
         }        
+
       },
       error => {
         this.status = 'error';
@@ -120,6 +146,7 @@ export class UserEditComponent implements OnInit {
   }
 
   avatarUpload(datos){    
+    console.log("Datos:",JSON.stringify(datos));
     let data = datos.body;
     this.user.image = data.image;    
   }

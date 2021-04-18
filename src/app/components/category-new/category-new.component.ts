@@ -26,28 +26,32 @@ export class CategoryNewComponent implements OnInit {
     this.page_title = "Crear nueva categoria";
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
-    this.category = new Category(1, '');
+    this.category = new Category(1, '');    
+    this.status = "";
   }
 
   ngOnInit(): void {
   }
 
-  onSubmit(form){
-    // console.log("Categoria")
-    // console.log(this.category);
+  onSubmit(form){    
+    this.status = "";
 
+
+    //ENVIAMOS INFORMACION DE CATEGORIA Y TOKEN
     this._categoryService.create(this.category, this.token).subscribe(
-      response => {
-        if(response.status == "success"){
+      response => {        
+        
+        console.log("RESPONSE:", JSON.stringify(response));
+
+        //OBTENEMOS INFORMACION DE RESPUESTA        
+        if(response.status == "success"){          
           this.status = 'success';
-          form.reset();
-          console.log(response);
-          
-          this._router.navigate(['/inicio']);
-        }else{          
-          this.status = 'error';
-          console.log(response);
-        }        
+          form.reset();          
+          this._router.navigate(['/crear-categoria']);
+        }else{             
+          this.status = 'error';          
+        }
+
       },
       error => {
         this.status = 'success';

@@ -40,8 +40,10 @@ export class AppComponent implements OnInit, DoCheck {
   loadUser(){
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
-    // console.log(this.identity);
-    // console.log(this.token);
+    
+    // console.log('CARGAMOS DATOS DE USUARIOS QUE SE CARGAN AUTOMATICAMENTE');
+    // console.log('IDENTITY:',this.identity);
+    // console.log('TOKEN:',this.token);
   }
 
   getCategories(){

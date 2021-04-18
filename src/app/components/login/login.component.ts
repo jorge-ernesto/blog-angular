@@ -31,36 +31,44 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form){
+    //ENVIAMOS INFORMACION DE USUARIO A SIGNUP (ESTO RETORNARA EL TOKEN)
     this._userService.signup(this.user).subscribe(
       response => {
+        console.log('TOKEN:', JSON.stringify(response));
 
-        //OBTENER TOKEN
+        //OBTENEMOS TOKEN
         if(response.status == "success"){
           this.status = "success";
           this.token = response.token;
-          //OBTENEMOS USUARIO IDENTIFICADO
+
+          //ENVIAMOS INFORMACION DE USUARIO A SIGNUP (ESTO RETORNARA LA DATA DEL USUARIO AUTENTICADO, QUE ES EL TOKEN DECODIFICADO)
           this._userService.signup(this.user, true).subscribe(
-            response => {
-              this.identity = response;
+            response => {              
+              console.log('USUARIO AUTENTICADO:', JSON.stringify(response));              
 
-              //PERSISTIR DATOS DE USUARIO IDENTIFICADO
-              // console.log(this.token);
-              // console.log(this.identity);
+              //OBTENEMOS USUARIO AUTENTICADO
+              if(response.status == "success"){
+                this.status = "success";
+                this.identity = response;                
 
-              localStorage.setItem('token', JSON.stringify(this.token));
-              localStorage.setItem('identity', JSON.stringify(this.identity.user));
+                //PERSISTIR DATOS DE USUARIO IDENTIFICADO                
+                localStorage.setItem('token', JSON.stringify(this.token));
+                localStorage.setItem('identity', JSON.stringify(this.identity.user));
 
-              //REDIRECCION A LA PAGINA PRINCIPAL
-              this._router.navigate(['inicio']);
+                //REDIRECCION A LA PAGINA PRINCIPAL
+                this._router.navigate(['inicio']);
+              }else{
+                this.status = "error";
+              }
             },
             error => {
               this.status = "error";
               console.log(<any>error)              
             }
-          ) //CERRAR OBTENEMOS USUARIO IDENTIFICADO
+          )
         }else{
           this.status = "error";          
-        } //CERRAR OBTENER TOKEN        
+        } 
 
       },
       error => {        
