@@ -3,6 +3,7 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {CategoryService} from '../../services/category.service';
 import {Post} from '../../models/post';
+import {Category} from 'src/app/models/category';
 
 @Component({
   selector: 'app-post-new',
@@ -14,6 +15,7 @@ export class PostNewComponent implements OnInit {
   public identity;
   public token;
   public post: Post;
+  public categories: Category;
   public status: string;
 
   //OPCIONES DE FROALA
@@ -37,11 +39,28 @@ export class PostNewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.post = new Post(1, this.identity.sub, 1, '', '', null, null);
+    this.post = new Post(1, this.identity.sub, 1, '', '', null);
+    this.getCategories();
   }
 
-  onSubmit(form){ 
-    console.log(this.post);
+  onSubmit(form){
+  }
+
+  getCategories(){
+    this._categoryService.getCategories().subscribe(
+      response => {
+
+        //OBTENEMOS CATEGORIAS
+        if(response.status == 'success'){
+          this.categories = response.categories;
+          console.log("CATEGORIAS:", this.categories);
+        }
+
+      },
+      error => {
+        console.log(<any>error);
+      }
+    )
   }
 
 }
