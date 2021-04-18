@@ -15,8 +15,8 @@
                 <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" [routerLink]="['/inicio']">Inicio <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Categorias</a>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['/crear-categoria']">Categorias</a>
                 </li>                
             </ul>
 
@@ -53,5 +53,14 @@
     <!-- CONTENIDO -->
     <router-outlet></router-outlet>
     <!-- CERRAR CONTENIDO -->
+
+    <!-- FOOTER -->
+    <hr>
+    <footer>
+        Este proyecto fue desarrollado en Angular y Laravel, por Jorge Ernesto.
+        © Company 2019, Inc. Todos los derechos reservados. Términos de uso y privacidad.
+    </footer>
+    <br>
+    <!-- CERRAR FOOTER -->
 
 </div> <!-- CERRAR CONTENEDOR PRINCIPAL -->
