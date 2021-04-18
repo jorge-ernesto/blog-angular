@@ -20,7 +20,7 @@
                 </li>                
             </ul>
 
-            <ul class="navbar-nav navbar-right">
+            <ul class="navbar-nav navbar-right" *ngIf="!identity">
                 <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" [routerLink]="['/login']">Login</a>
                 </li>
@@ -29,10 +29,10 @@
                 </li>
             </ul>
 
-            <ul class="navbar-nav navbar-right">
+            <ul class="navbar-nav navbar-right" *ngIf="identity">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Nombre usuario
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">                        
+                        {{identity.user.name + ' ' + identity.user.surname}}                        
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Crear entrada</a>
