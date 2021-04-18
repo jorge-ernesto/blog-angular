@@ -26,7 +26,6 @@ import 'froala-editor/js/third_party/embedly.min';
 export class UserEditComponent implements OnInit {
   public page_title: string;
   public user: User;  
-
   public identity;
   public token;
   public status; 
@@ -91,8 +90,8 @@ export class UserEditComponent implements OnInit {
   }
 
   onSubmit(form){
-    console.log('Usuario');
-    console.log(this.user);
+    // console.log('Usuario');
+    // console.log(this.user);
 
     this._userService.update(this.token, this.user).subscribe(
       response => {        

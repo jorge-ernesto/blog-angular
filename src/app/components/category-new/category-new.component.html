@@ -17,7 +17,7 @@
         <div class="form-group">
             <label for="name">Nombre</label>
             <input type="text" name="name" class="form-control" #name="ngModel" [(ngModel)]="
-            category.name" required pattern="[a-z A-Z]+">
+            category.name" required pattern="[a-z A-Z 0-9]+">
             
             <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
                 El nombre no es valido

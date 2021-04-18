@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
 
   logout(){
     this._route.params.subscribe(params => {
-      let logout = +params['sure'];
+      let logout = +params['sure']; //+ para indicarle que es integer
       if(logout == 1){
         localStorage.removeItem('identity');
         localStorage.removeItem('token');
