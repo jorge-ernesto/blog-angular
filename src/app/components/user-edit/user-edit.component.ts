@@ -25,10 +25,12 @@ import 'froala-editor/js/third_party/embedly.min';
 })
 export class UserEditComponent implements OnInit {
   public page_title: string;
-  public user: User;
-  public status: string;
+  public user: User;  
+
   public identity;
   public token;
+  public status; 
+  public url;
 
   //OPCIONES DE FROALA
   public froala_options: Object = {
@@ -69,6 +71,7 @@ export class UserEditComponent implements OnInit {
     this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '', '');
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.url = global.url;
 
     //RELLENAR OBJETO USUARIO
     this.user = new User(
