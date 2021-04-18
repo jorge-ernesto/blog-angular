@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {APP_ROUTING} from './app.routing';
+import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -18,7 +19,8 @@ import { ErrorComponent } from './components/error/error.component';
   ],
   imports: [
     BrowserModule,
-    APP_ROUTING
+    APP_ROUTING,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
