@@ -25,9 +25,9 @@ import 'froala-editor/js/third_party/embedly.min';
 })
 export class UserEditComponent implements OnInit {
   public page_title: string;
-  public user: User;  
   public identity;
   public token;
+  public user: User;  
   public status; 
   public url;
 
@@ -39,7 +39,6 @@ export class UserEditComponent implements OnInit {
     toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
     toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
   };  
-
 
   //OPCIONES DE ANGULAR FILE UPLOADER
   public afuConfig = {
@@ -69,7 +68,6 @@ export class UserEditComponent implements OnInit {
       sizeLimit : ' Límite de tamaño ' 
     }
   };  
-
 
   constructor(
     private _userService: UserService

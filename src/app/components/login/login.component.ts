@@ -10,11 +10,11 @@ import {UserService} from '../../services/user.service';
   providers: [UserService]
 })
 export class LoginComponent implements OnInit {
-  public page_title: string; //Creamos una propiedad publica
+  public page_title: string; //Creamos una propiedad publica  
+  public identity;
+  public token;  
   public user: User;
   public status: string;
-  public token;
-  public identity;
 
   constructor(
     private _userService: UserService,
