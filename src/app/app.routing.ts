@@ -6,6 +6,7 @@ import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {HomeComponent} from './components/home/home.component';
 import {ErrorComponent} from './components/error/error.component';
+import {UserEditComponent} from './components/user-edit/user-edit.component';
 
 //DEFINIR RUTAS
 const APP_ROUTES: Routes = [
@@ -15,6 +16,7 @@ const APP_ROUTES: Routes = [
     {path: 'logout/:sure', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'home', component: HomeComponent},
+    {path: 'ajustes', component: UserEditComponent},
     {path: '**', component: ErrorComponent}
 ];
 
