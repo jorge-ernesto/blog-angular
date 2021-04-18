@@ -38,8 +38,8 @@ export class UserEditComponent implements OnInit {
     toolbarButtonsXS: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
     toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
     toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
-  };
-  //CERRAR OPCIONES DE FROALA
+  };  
+
 
   //OPCIONES DE ANGULAR FILE UPLOADER
   public afuConfig = {
@@ -68,8 +68,8 @@ export class UserEditComponent implements OnInit {
       afterUploadMsg_error : ' ¡Error al cargar ! ' , 
       sizeLimit : ' Límite de tamaño ' 
     }
-  };
-  //CERRAR OPCIONES DE ANGULAR FILE UPLOADER
+  };  
+
 
   constructor(
     private _userService: UserService
@@ -99,7 +99,6 @@ export class UserEditComponent implements OnInit {
 
   onSubmit(form){ 
     this.status = "";
-
     
     this._userService.update(this.user, this.token).subscribe(
       response => {  

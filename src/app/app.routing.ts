@@ -8,19 +8,22 @@ import {HomeComponent} from './components/home/home.component';
 import {ErrorComponent} from './components/error/error.component';
 import {UserEditComponent} from './components/user-edit/user-edit.component';
 import {CategoryNewComponent} from './components/category-new/category-new.component';
+import {PostNewComponent} from './components/post-new/post-new.component';
 
 //DEFINIR RUTAS
 const APP_ROUTES: Routes = [
-    {path: '', component: LoginComponent},
-    {path: 'login', component: LoginComponent},
-    {path: 'inicio', component: HomeComponent},    
+    {path: ''            , component: LoginComponent},
+    {path: 'login'       , component: LoginComponent},
+
     {path: 'logout/:sure', component: LoginComponent},
-    {path: 'register', component: RegisterComponent},
-    {path: 'home', component: HomeComponent},
-    {path: 'ajustes', component: UserEditComponent},
+    {path: 'inicio'      , component: HomeComponent},    
+    {path: 'home'        , component: HomeComponent},    
+    {path: 'register'    , component: RegisterComponent},    
+    {path: 'ajustes'     , component: UserEditComponent},
 
     {path: 'crear-categoria', component: CategoryNewComponent},
-    {path: '**', component: ErrorComponent}
+    {path: 'crear-entrada'  , component: PostNewComponent},
+    {path: '**'             , component: ErrorComponent}
 ];
 
 //EXPORTAR CONFIGURACION
