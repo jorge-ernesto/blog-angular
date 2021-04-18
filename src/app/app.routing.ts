@@ -12,8 +12,8 @@ import {CategoryNewComponent} from './components/category-new/category-new.compo
 //DEFINIR RUTAS
 const APP_ROUTES: Routes = [
     {path: '', component: LoginComponent},
-    {path: 'inicio', component: HomeComponent},    
     {path: 'login', component: LoginComponent},
+    {path: 'inicio', component: HomeComponent},    
     {path: 'logout/:sure', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'home', component: HomeComponent},

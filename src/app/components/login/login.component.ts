@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //SE EJECUTA SIEMPRE QUE CARGUE EL COMPONENTE Y CIERRA SESION SOLO CUANDO LE LLEGA EL PARAMETRO SURE POR LA URL
+    this.verificarUsuarioAutenticado();
     this.logout();
   }
 
@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
     )
   }
 
+  //SE EJECUTA SIEMPRE QUE CARGA EL COMPONENTE, PERO SOLO CIERRA LA SESION SOLO CUANDO LE LLEGA EL PARAMETRO SURE POR LA URL
   logout(){
     this._route.params.subscribe(params => {
       let logout = +params['sure']; //+ para indicarle que es integer
@@ -81,9 +82,17 @@ export class LoginComponent implements OnInit {
         this.token = null;
 
         //REDIRECCION A LA PAGINA PRINCIPAL
-        this._router.navigate(['inicio']);
+        this._router.navigate(['login']);
       }
     })
+  }
+
+  //VERIFICAMOS QUE EL USUARIO ESTE AUTENTICADO PARA REDIRECCIONAR A INICIO
+  verificarUsuarioAutenticado(){
+    this.identity = this._userService.getIdentity();    
+    if(this.identity){
+      this._router.navigate(['inicio']);
+    }
   }
 
 }

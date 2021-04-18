@@ -22,21 +22,26 @@ export class AppComponent implements OnInit, DoCheck {
   ){
     this.loadUser();
     this.url = global.url;
+    console.log("Constructor carga primero");
   }
 
   ngOnInit(){
     console.log("Webapp cargada correctamente");
-    this.getCategories();
+    console.log("ngOnInit carga despues de constructor");
   }
 
   ngDoCheck(){
     this.loadUser();
-    this.getCategories();
+    if(this.identity && this.identity.sub){ //Solo si esta autenticado
+      this.getCategories();
+    }
   }
 
   loadUser(){
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    // console.log(this.identity);
+    // console.log(this.token);
   }
 
   getCategories(){
@@ -44,7 +49,7 @@ export class AppComponent implements OnInit, DoCheck {
       response => {
         if(response.status == "success"){
           this.categories = response.categories;
-          console.log(this.categories);
+          // console.log(this.categories);
         }        
       },
       error => {
