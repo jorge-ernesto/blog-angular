@@ -44,11 +44,11 @@ export class LoginComponent implements OnInit {
               this.identity = response;
 
               //PERSISTIR DATOS DE USUARIO IDENTIFICADO
-              console.log(this.token);
-              console.log(this.identity);
+              // console.log(this.token);
+              // console.log(this.identity);
 
               localStorage.setItem('token', JSON.stringify(this.token));
-              localStorage.setItem('identity', JSON.stringify(this.identity));
+              localStorage.setItem('identity', JSON.stringify(this.identity.user));
 
               //REDIRECCION A LA PAGINA PRINCIPAL
               this._router.navigate(['inicio']);

@@ -11,6 +11,7 @@ import {UserService} from '../../services/user.service';
 export class UserEditComponent implements OnInit {
   public page_title: string;
   public user: User;
+  public status: string;
   public identity;
   public token;
 
@@ -23,14 +24,46 @@ export class UserEditComponent implements OnInit {
     this.token = this._userService.getToken();
 
     //RELLENAR OBJETO USUARIO
-    this.user = this.identity.user;
-    console.log(this.identity);
+    this.user = new User(
+      this.identity.sub,
+      this.identity.name,
+      this.identity.surname,
+      this.identity.role,
+      this.identity.email,
+      '',
+      this.identity.description,
+      this.identity.image,
+      '',
+    );
   }
 
   ngOnInit(): void {
   }
 
-  onSubmit(form){
+  onSubmit(form){   
+    this._userService.update(this.token, this.user).subscribe(
+      response => {        
+        if(response.status == "success"){
+          this.status = "success";
 
+          //ACTUALIZAR USUARIO
+          if(response.user){
+            this.user = response.user;            
+          }
+
+          //ACTUALIZAR USUARIO EN SESSION          
+          localStorage.setItem("identity", JSON.stringify(response.user));
+
+          console.log(response);
+        }else{
+          this.status = "error";
+          console.log(response);
+        }        
+      },
+      error => {
+        this.status = 'error';
+        console.log(<any>error);
+      }
+    );
   }
 }
