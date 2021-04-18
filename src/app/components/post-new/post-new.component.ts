@@ -16,6 +16,15 @@ export class PostNewComponent implements OnInit {
   public post: Post;
   public status: string;
 
+  //OPCIONES DE FROALA
+  public froala_options: Object = {
+    charCounterCount: true,
+    toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+    toolbarButtonsXS: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+    toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+    toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
+  };
+
   constructor(
     private _userService: UserService,
     private _categoryService: CategoryService,
@@ -28,7 +37,11 @@ export class PostNewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.post = new Post(1, this.identity.sub, 1, '', '', null);
+    this.post = new Post(1, this.identity.sub, 1, '', '', null, null);
+  }
+
+  onSubmit(form){ 
+    console.log(this.post);
   }
 
 }
