@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
+import {global} from './../../global';
 
 //TODOS LOS PLUGINS DE FROALA
 // Import all Froala Editor plugins.
@@ -37,6 +38,29 @@ export class UserEditComponent implements OnInit {
     toolbarButtonsSM: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
     toolbarButtonsMD: ['bold', 'italic', 'underline', 'paragraphFormat','alert'],
   };
+  //CERRAR OPCIONES DE FROALA
+
+  //OPCIONES DE ANGULAR FILE UPLOADER
+  public afuConfig = {
+    multiple: false,
+    formatsAllowed: ".jpg,.png, .gif, .jpeg",
+    maxSize: "50",
+    uploadAPI:  {
+      url: global.url+'user/upload',
+      method:"POST",
+      headers: {     
+        "Authorization" : this._userService.getToken()
+      }
+    },
+    theme: "attachPin",
+    hideProgressBar: false,
+    hideResetBtn: true,
+    hideSelectBtn: false,
+    replaceTexts: {
+      attachPinBtn: 'Sube tu avatar de usuario'
+    }    
+  };
+  //CERRAR OPCIONES DE ANGULAR FILE UPLOADER
 
   constructor(
     private _userService: UserService
@@ -53,10 +77,10 @@ export class UserEditComponent implements OnInit {
       this.identity.surname,
       this.identity.role,
       this.identity.email,
-      '',
+      '', //password
       this.identity.description,
       this.identity.image,
-      '',
+      '', //getToken
     );
   }
 
@@ -64,6 +88,9 @@ export class UserEditComponent implements OnInit {
   }
 
   onSubmit(form){
+    console.log('Usuario');
+    console.log(this.user);
+
     this._userService.update(this.token, this.user).subscribe(
       response => {        
         if(response.status == "success"){
@@ -88,5 +115,10 @@ export class UserEditComponent implements OnInit {
         console.log(<any>error);
       }
     );
+  }
+
+  avatarUpload(datos){    
+    let data = datos.body;
+    this.user.image = data.image;    
   }
 }
