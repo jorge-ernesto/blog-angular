@@ -31,6 +31,7 @@ export class AppComponent implements OnInit, DoCheck {
 
   ngDoCheck(){
     this.loadUser();
+    this.getCategories();
   }
 
   loadUser(){
