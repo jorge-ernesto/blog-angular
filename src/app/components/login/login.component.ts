@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   onSubmit(form){
     this._userService.signup(this.user).subscribe(
       response => {
-                
+
         //OBTENER TOKEN
         if(response.status == "success"){
           this.status = "success";
@@ -37,8 +37,13 @@ export class LoginComponent implements OnInit {
           this._userService.signup(this.user, true).subscribe(
             response => {
               this.identity = response;
+
+              //PERSISTIR DATOS DE USUARIO IDENTIFICADO
               console.log(this.token);
               console.log(this.identity);
+
+              localStorage.setItem('token', JSON.stringify(this.token));
+              localStorage.setItem('identity', JSON.stringify(this.identity));
             },
             error => {
               this.status = "error";
