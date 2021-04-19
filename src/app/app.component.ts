@@ -40,8 +40,8 @@ export class AppComponent implements OnInit, DoCheck {
   }
 
   ngOnInit(){
-    console.log("Webapp cargada correctamente");
     console.log("ngOnInit carga despues de constructor");
+    console.log("Webapp cargada correctamente");    
   }
 
   ngDoCheck(){
