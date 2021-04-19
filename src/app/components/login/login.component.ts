@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
   public status: string;
 
   constructor(    
-
     private _router: Router,
     private _route: ActivatedRoute,
     private _userService: UserService
@@ -35,7 +34,7 @@ export class LoginComponent implements OnInit {
     //ENVIAMOS INFORMACION DE USUARIO A SIGNUP (ESTO RETORNARA EL TOKEN)
     this._userService.signup(this.user).subscribe(
       response => {
-        console.log('TOKEN:', JSON.stringify(response));
+        console.log('TOKEN:', response);
 
         //OBTENEMOS TOKEN
         if(response.status == "success"){
@@ -45,7 +44,7 @@ export class LoginComponent implements OnInit {
           //ENVIAMOS INFORMACION DE USUARIO A SIGNUP (ESTO RETORNARA LA DATA DEL USUARIO AUTENTICADO, QUE ES EL TOKEN DECODIFICADO)
           this._userService.signup(this.user, true).subscribe(
             response => {              
-              console.log('USUARIO AUTENTICADO:', JSON.stringify(response));              
+              console.log('USUARIO AUTENTICADO:', response);              
 
               //OBTENEMOS USUARIO AUTENTICADO
               if(response.status == "success"){
