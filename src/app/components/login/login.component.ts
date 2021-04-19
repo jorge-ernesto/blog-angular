@@ -16,10 +16,11 @@ export class LoginComponent implements OnInit {
   public user: User;
   public status: string;
 
-  constructor(
-    private _userService: UserService,
+  constructor(    
+
     private _router: Router,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _userService: UserService
   ) {
     this.page_title = 'Identificate'; //Lo normal es darle un valor a las propiedades dentro del constructor
     this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '', '');

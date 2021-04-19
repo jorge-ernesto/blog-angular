@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Category} from '../models/category';
+import {Post} from '../models/post';
 import {global} from './global';
 
 @Injectable()
-export class CategoryService{
-    public url: string;    
+export class PostService{
+    public url: string;
 
     constructor(
         public _http: HttpClient
@@ -14,18 +14,18 @@ export class CategoryService{
         this.url = global.url;
     }
 
-    create(category, token): Observable<any>{
-        let json = JSON.stringify(category); //Convierte JSON en String
+    create(post, token): Observable<any>{
+        let json = JSON.stringify(post); //Convierte JSON en String
         let params = 'json='+json;        
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
                                         .set('Authorization', token);
                                         
-        return this._http.post(this.url+'category', params, {headers: headers});
+        return this._http.post(this.url+'post', params, {headers: headers});
     }
 
-    getCategories(): Observable<any>{        
+    getPosts(): Observable<any>{        
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this._http.get(this.url+'category', {headers: headers});
+        return this._http.get(this.url+'post', {headers: headers});
     }
 }

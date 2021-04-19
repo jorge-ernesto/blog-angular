@@ -58,10 +58,11 @@ export class UserEditComponent implements OnInit {
   constructor(
     private _userService: UserService
   ) {
-    this.page_title = "Ajustes de usuario";
-    this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '', '');
+    this.page_title = "Ajustes de usuario";    
+
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '', '');
     this.url = global.url;
 
     //RELLENAR OBJETO USUARIO
@@ -82,15 +83,19 @@ export class UserEditComponent implements OnInit {
   }  
 
   onSubmit(form){ 
+    // console.log('USUARIO:', JSON.stringify(this.user));
+    // console.log('TOKEN:', JSON.stringify(this.token));        
     this.status = "";
     
+    //ENVIAMOS INFORMACION DE USUARIO Y TOKEN
     this._userService.update(this.user, this.token).subscribe(
       response => {  
+        
 
-        // console.log('USUARIO:', JSON.stringify(this.user));
-        // console.log('TOKEN:', JSON.stringify(this.token));        
+
         console.log('RESPONSE:', JSON.stringify(response));
                 
+        //OBTENEMOS INFORMACION DE RESPUESTA
         if(response.status == "success"){                                        
           //ACTUALIZAR USUARIO
           if(response.user){

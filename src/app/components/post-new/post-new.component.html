@@ -1,12 +1,15 @@
 <div class="col-md-12 mt-3">
-    <h1>{{page_title}}</h1>    
+    <h1>{{page_title}}</h1>  
+    <p>
+        Añade un nuevo articulo al blog.
+    </p>  
 
     <!-- ALERTAS -->
     <div class="alert alert-success" *ngIf="status == 'success'">
-        <!-- Los datos se han guardado correctamente -->
+        Los datos se han guardado correctamente
     </div>
     <div class="alert alert-danger" *ngIf="status == 'error'">
-        <!-- Los datos no se han guardado -->
+        Los datos no se han guardado
     </div>
 
      <!-- FORMULARIO DE ENTRADAS -->

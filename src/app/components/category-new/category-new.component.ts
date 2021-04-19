@@ -11,16 +11,18 @@ import {CategoryService} from './../../services/category.service';
   providers: [UserService, CategoryService]
 })
 export class CategoryNewComponent implements OnInit {
-  public page_title: string;
-  public status: string;
+  public page_title: string;  
+
   public identity;
   public token;
   public category: Category;  
+  public status: string;
 
-  constructor(
-    private _userService: UserService,
+  constructor(    
+
     private _router: Router,
     private _route: ActivatedRoute,
+    private _userService: UserService,
     private _categoryService: CategoryService
   ) {
     this.page_title = "Crear nueva categoria";
@@ -36,11 +38,10 @@ export class CategoryNewComponent implements OnInit {
   onSubmit(form){    
     this.status = "";
 
-
     //ENVIAMOS INFORMACION DE CATEGORIA Y TOKEN
     this._categoryService.create(this.category, this.token).subscribe(
       response => {        
-        
+
         console.log("RESPONSE:", JSON.stringify(response));
 
         //OBTENEMOS INFORMACION DE RESPUESTA        
@@ -54,7 +55,7 @@ export class CategoryNewComponent implements OnInit {
 
       },
       error => {
-        this.status = 'success';
+        this.status = 'error';
         console.log(<any>error);
       }
     );

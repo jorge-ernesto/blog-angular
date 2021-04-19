@@ -2,21 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {CategoryService} from '../../services/category.service';
-import {Post} from '../../models/post';
+import {PostService} from '../../services/post.service';
 import {Category} from 'src/app/models/category';
+import {Post} from '../../models/post';
 import {global} from './../../global';
 
 @Component({
   selector: 'app-post-new',
   templateUrl: './post-new.component.html',
-  styleUrls: ['./post-new.component.css']
+  styleUrls: ['./post-new.component.css'],
+  providers: [UserService, PostService] //ESTO ES MUY IMPORTANTE, SIN CARGARLO EN LOS PROVIDERS NO FUNCIONARA
 })
 export class PostNewComponent implements OnInit {
   public page_title: string;
   public identity;
-  public token;
-  public post: Post;
+  public token;  
   public categories: Category;
+  public post: Post;
   public status: string;
 
   //OPCIONES DE FROALA
@@ -58,10 +60,11 @@ export class PostNewComponent implements OnInit {
   };
 
   constructor(
-    private _userService: UserService,
-    private _categoryService: CategoryService,
     private _router: Router,    
     private _route: ActivatedRoute,
+    private _userService: UserService,
+    private _categoryService: CategoryService,
+    private _postService: PostService,    
   ) { 
     this.page_title = "Crear una entrada";
     this.identity = this._userService.getIdentity();
@@ -74,6 +77,29 @@ export class PostNewComponent implements OnInit {
   }
 
   onSubmit(form){
+    this.status = "";
+    
+    //ENVIAMOS INFORMACION DE POST Y TOKEN
+    this._postService.create(this.post, this.token).subscribe(
+      response => {
+         
+        console.log('RESPONSE:', JSON.stringify(response));
+
+        //OBTENEMOS INFORMACION DE RESPUESTA
+        if(response.status == "success"){          
+          this.status = "success";
+          form.reset();          
+          this._router.navigate(['/crear-entrada']);
+        }else{
+          this.status = "error";
+        }
+
+      },
+      error => {
+        this.status = 'error';
+        console.log(<any>error);
+      }
+    );
   }
 
   getCategories(){
