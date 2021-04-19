@@ -12,3 +12,9 @@
 .avatar_mask img{
    width: 50px;
 }
+
+/* Significa que tendra un alto maximo de 200px y todo lo que se salga de ahi se ocultara, lo comentamos ya que los cards se ven muy bien sin la restriccion de altura */
+/* .post-image-mask{ 
+   height: 200px;
+   overflow: hidden;
+} */

@@ -29,6 +29,7 @@ export class AppComponent implements OnInit, DoCheck {
   public token;
   public url;
   public categories;
+  public interval;
 
   constructor(
     public _userService: UserService,
@@ -41,14 +42,35 @@ export class AppComponent implements OnInit, DoCheck {
 
   ngOnInit(){
     console.log("ngOnInit carga despues de constructor");
-    console.log("Webapp cargada correctamente");    
-  }
+    console.log("Webapp cargada correctamente");        
+    
+    this.getCategoriesWithSetInterval();
+  }  
 
   ngDoCheck(){
+    //NO USAMOS ESTE METODO YA QUE NGDOCHECK SE RECARGA CADA SEGUNDO HACIENDO PETICIONES HTTP, LO CUAL PUEDE SER NO TAN CONVENIENTE
+    // this.loadUser();
+    // if(this.identity && this.identity.sub){ //Solo si esta autenticado
+    //   this.getCategories();
+    // }
+  }
+
+  getCategoriesWithSetInterval(){ 
+    //TRAEMOS AL INICIAR LA APLICACION LA DATA DE CATEGORIAS
     this.loadUser();
     if(this.identity && this.identity.sub){ //Solo si esta autenticado
       this.getCategories();
     }
+
+    //EJECUTAMOS LA ACTUALIZACION DE CATEGORIAS CADA 30 SEGUNDOS
+    this.interval = setInterval(function(){
+      
+      this.loadUser();
+      if(this.identity && this.identity.sub){ //Solo si esta autenticado        
+        this.getCategories();
+      }
+
+    }.bind(this), 30000);    
   }
 
   loadUser(){
