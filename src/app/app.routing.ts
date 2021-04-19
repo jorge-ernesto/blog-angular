@@ -14,7 +14,6 @@ import {PostNewComponent} from './components/post-new/post-new.component';
 const APP_ROUTES: Routes = [
     {path: ''            , component: LoginComponent},
     {path: 'login'       , component: LoginComponent},
-
     {path: 'logout/:sure', component: LoginComponent},
     {path: 'inicio'      , component: HomeComponent},    
     {path: 'home'        , component: HomeComponent},    

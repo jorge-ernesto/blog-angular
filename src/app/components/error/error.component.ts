@@ -10,7 +10,7 @@ export class ErrorComponent implements OnInit {
 
   constructor() {
     this.page_title = "Error";
-   }
+  }
 
   ngOnInit(): void {
   }

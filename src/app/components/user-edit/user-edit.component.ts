@@ -59,7 +59,6 @@ export class UserEditComponent implements OnInit {
     private _userService: UserService
   ) {
     this.page_title = "Ajustes de usuario";    
-
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '', '');
@@ -91,8 +90,6 @@ export class UserEditComponent implements OnInit {
     this._userService.update(this.user, this.token).subscribe(
       response => {  
         
-
-
         console.log('RESPONSE:', JSON.stringify(response));
                 
         //OBTENEMOS INFORMACION DE RESPUESTA

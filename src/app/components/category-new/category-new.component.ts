@@ -12,14 +12,12 @@ import {CategoryService} from './../../services/category.service';
 })
 export class CategoryNewComponent implements OnInit {
   public page_title: string;  
-
   public identity;
   public token;
   public category: Category;  
   public status: string;
 
   constructor(    
-
     private _router: Router,
     private _route: ActivatedRoute,
     private _userService: UserService,
