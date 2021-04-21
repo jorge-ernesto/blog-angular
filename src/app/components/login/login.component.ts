@@ -16,12 +16,13 @@ export class LoginComponent implements OnInit {
   public user: User;
   public status: string;
 
+  //Lo normal es darle un valor a las propiedades dentro del constructor, es decir donde estamos ahora
   constructor(    
     private _router: Router,
     private _route: ActivatedRoute,
     private _userService: UserService
   ) {
-    this.page_title = 'Identificate'; //Lo normal es darle un valor a las propiedades dentro del constructor
+    this.page_title = 'Identificate';
     this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '', '');
   }
 
@@ -31,6 +32,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form){
+    // console.log(this.user);
+
     //ENVIAMOS INFORMACION DE USUARIO A SIGNUP (ESTO RETORNARA EL TOKEN)
     this._userService.signup(this.user).subscribe(
       response => {
@@ -52,8 +55,8 @@ export class LoginComponent implements OnInit {
                 this.identity = response;                
 
                 //PERSISTIR DATOS DE USUARIO IDENTIFICADO                
-                localStorage.setItem('token', JSON.stringify(this.token));
                 localStorage.setItem('identity', JSON.stringify(this.identity.user));
+                localStorage.setItem('token', JSON.stringify(this.token));                
 
                 //REDIRECCION A LA PAGINA PRINCIPAL
                 this._router.navigate(['inicio']);
