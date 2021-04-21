@@ -116,7 +116,7 @@ export class UserEditComponent implements OnInit {
           //MOSTRAMOS MENSAJE DE EXITO
           this.status = "success";   
           
-          //REDIRECCION A LA MISMA PAGINA
+          //REDIRECCION A LA MISMA PAGINA PARA QUE LA IMAGEN CARGUE CORRECTAMENTE EN EL NAVBAR
           location.reload();
         }else{
           this.status = "error";

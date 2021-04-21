@@ -15,18 +15,17 @@ export class LoginComponent implements OnInit {
   public token;  
   public user: User;
   public status: string;
-
-  //Lo normal es darle un valor a las propiedades dentro del constructor, es decir donde estamos ahora
-  constructor(    
-    private _router: Router,
-    private _route: ActivatedRoute,
+  
+  constructor( //Lo normal es darle un valor a las propiedades dentro del constructor, es decir donde estamos ahora
+    private _router: Router,    
+    private _route: ActivatedRoute,    
     private _userService: UserService
   ) {
     this.page_title = 'Identificate';
     this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '', '');
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { //Lo normal es llamar a funciones dentro del ngOnInit
     this.verificarUsuarioAutenticado();
     this.logout();
   }

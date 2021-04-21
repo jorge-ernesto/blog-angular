@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
         }        
       },
       error => {
-        this.status = 'success';
+        this.status = 'error';
         console.log(<any>error);
       }
     );    
