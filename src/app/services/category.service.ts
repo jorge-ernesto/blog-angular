@@ -20,7 +20,7 @@ export class CategoryService{
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded') //application/x-www-form-urlencoded: Los valores son codificados en tuplas llave-valor separadas por '&', con un '='  entre la llave y el valor.
                                         .set('Authorization', token);
                                         
-        return this._http.post(this.url+'category', params, {headers: headers});
+        return this._http.post(this.url+'category', params, {headers: headers}); //Esto al final es una peticion AJAX
     }
 
     getCategories(): Observable<any>{        

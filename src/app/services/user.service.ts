@@ -37,7 +37,7 @@ export class UserService{
         let params = 'json='+json;
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'); //application/x-www-form-urlencoded: Los valores son codificados en tuplas llave-valor separadas por '&', con un '='  entre la llave y el valor.
 
-        return this._http.post(this.url+'login', params, {headers:headers});
+        return this._http.post(this.url+'login', params, {headers:headers}); //Esto al final es una peticion AJAX
     }
 
     update(user, token): Observable<any>{
