@@ -57,8 +57,8 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('identity', JSON.stringify(this.identity.user));
                 localStorage.setItem('token', JSON.stringify(this.token));                
 
-                //REDIRECCION A LA PAGINA PRINCIPAL
-                this._router.navigate(['inicio']);
+                //REDIRECCIONAMOS A LA PAGINA PRINCIPAL
+                this._router.navigate(['/inicio']);
               }else{
                 this.status = "error";
               }
@@ -91,8 +91,8 @@ export class LoginComponent implements OnInit {
         this.identity = null;
         this.token = null;
 
-        //REDIRECCION A LA PAGINA PRINCIPAL
-        this._router.navigate(['login']);
+        //REDIRECCIONAMOS A LOGIN CUANDO EL USUARIO SE DESLOGUEA
+        this._router.navigate(['/login']);
       }
     })
   }
@@ -101,7 +101,7 @@ export class LoginComponent implements OnInit {
   verificarUsuarioAutenticado(){
     this.identity = this._userService.getIdentity();    
     if(this.identity){
-      this._router.navigate(['inicio']);
+      this._router.navigate(['/inicio']);
     }
   }
 

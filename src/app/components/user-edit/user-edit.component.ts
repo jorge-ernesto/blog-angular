@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {User} from '../../models/user';
 import {global} from './../../global';
@@ -56,6 +57,8 @@ export class UserEditComponent implements OnInit {
   };  
 
   constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
     private _userService: UserService
   ) {
     this.page_title = "Ajustes de usuario";    
@@ -116,7 +119,8 @@ export class UserEditComponent implements OnInit {
           //MOSTRAMOS MENSAJE DE EXITO
           this.status = "success";   
           
-          //REDIRECCION A LA MISMA PAGINA PARA QUE LA IMAGEN CARGUE CORRECTAMENTE EN EL NAVBAR
+          //REDIRECCIONAMOS A LA MISMA PAGINA PARA QUE LA IMAGEN CARGUE CORRECTAMENTE EN EL NAVBAR
+          // this._router.navigate(['/ajustes']);
           location.reload();
         }else{
           this.status = "error";
