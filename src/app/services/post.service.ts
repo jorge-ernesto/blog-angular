@@ -37,11 +37,10 @@ export class PostService{
 
     update(post, id, token):Observable<any>{
         let json = JSON.stringify(post);
-        let parmas = "json="+json;
-
+        let params = "json="+json;
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
                                         .set('Authorization', token);
 
-        return this._http.put(this.url+'post/'+id, {headers: headers});
+        return this._http.put(this.url+'post/'+id, params, {headers: headers});
     }
 }

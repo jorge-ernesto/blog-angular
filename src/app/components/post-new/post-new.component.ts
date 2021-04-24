@@ -17,6 +17,7 @@ export class PostNewComponent implements OnInit {
   public page_title: string;
   public identity;
   public token;  
+  public url;
   public categories: Category;
   public post: Post;
   public status: string;
@@ -68,6 +69,7 @@ export class PostNewComponent implements OnInit {
     private _postService: PostService,    
   ) { 
     this.page_title = "Crear una entrada";
+    this.url = global.url;
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.is_edit = false;

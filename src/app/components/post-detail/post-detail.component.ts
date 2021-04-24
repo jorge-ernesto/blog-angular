@@ -39,7 +39,7 @@ export class PostDetailComponent implements OnInit {
           //OBTENEMOS LOS DATOS DEL POST
           if(response.status == "success"){                                  
             this.post = response.post;
-            console.log(this.post);            
+            console.log('POST:', this.post);            
           }else{                                             
             this._router.navigate(['/inicio']);
           }        

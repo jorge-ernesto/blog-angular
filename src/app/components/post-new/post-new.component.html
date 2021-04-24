@@ -48,10 +48,11 @@
 
         <div class="form-group">
             <label for="image">Imagen</label>
+            <!-- <p>{{url + 'post/image/' + post.image}}</p> -->
 
-            <!-- <div *ngIf='post && post.image'>
+            <div *ngIf='is_edit && post && post.image'>
                 <img src="{{url + 'post/image/' + post.image}}" class="avatar_edit" alt="">
-            </div> -->
+            </div>  
 
             <angular-file-uploader 
                 [config]="afuConfig"

@@ -17,6 +17,7 @@ export class PostEditComponent implements OnInit {
   public page_title: string;
   public identity;
   public token;  
+  public url;
   public categories: Category;
   public post: Post;
   public status: string;
@@ -68,6 +69,7 @@ export class PostEditComponent implements OnInit {
     private _postService: PostService,    
   ) { 
     this.page_title = "Editar entrada";
+    this.url = global.url;
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.is_edit = true;
@@ -83,7 +85,7 @@ export class PostEditComponent implements OnInit {
     this.status = "";
     
     //ENVIAMOS INFORMACION DE POST Y TOKEN
-    this._postService.create(this.post, this.token).subscribe(
+    this._postService.update(this.post, this.post.id, this.token).subscribe(
       response => {
          
         console.log('RESPONSE:', JSON.stringify(response));
@@ -91,8 +93,10 @@ export class PostEditComponent implements OnInit {
         //OBTENEMOS INFORMACION DE RESPUESTA
         if(response.status == "success"){          
           this.status = "success";
-          form.reset();          
-          this._router.navigate(['/crear-entrada']);
+          //this.post = response.post; //Realmente no es necesario
+          //this._router.navigate(['/inicio']);
+          //this._router.navigate(['/editar-entrada', this.post.id]);          
+          this._router.navigate(['/entrada', this.post.id]);          
         }else{
           this.status = "error";
         }
@@ -141,7 +145,7 @@ export class PostEditComponent implements OnInit {
           //OBTENEMOS LOS DATOS DEL POST
           if(response.status == "success"){                                  
             this.post = response.post;
-            console.log(this.post);            
+            console.log('POST:', this.post);            
           }else{                                             
             this._router.navigate(['/inicio']);
           }        
