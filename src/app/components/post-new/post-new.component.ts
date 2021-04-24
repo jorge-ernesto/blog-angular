@@ -20,6 +20,7 @@ export class PostNewComponent implements OnInit {
   public categories: Category;
   public post: Post;
   public status: string;
+  public is_edit: boolean;
 
   //OPCIONES DE FROALA
   public froala_options: Object = {
@@ -69,6 +70,7 @@ export class PostNewComponent implements OnInit {
     this.page_title = "Crear una entrada";
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.is_edit = false;
   }
 
   ngOnInit(): void {

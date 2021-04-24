@@ -8,18 +8,19 @@ import {Post} from '../../models/post';
 import {global} from './../../global';
 
 @Component({
-  selector: 'app-post-new',
-  templateUrl: './post-new.component.html',
-  styleUrls: ['./post-new.component.css'],
+  selector: 'app-post-edit',
+  templateUrl: './../post-new/post-new.component.html',
+  styleUrls: ['./../post-new/post-new.component.css'],
   providers: [UserService, PostService] //ESTO ES MUY IMPORTANTE, SIN CARGARLO EN LOS PROVIDERS NO FUNCIONARA
 })
-export class PostNewComponent implements OnInit {
+export class PostEditComponent implements OnInit {
   public page_title: string;
   public identity;
   public token;  
   public categories: Category;
   public post: Post;
   public status: string;
+  public is_edit: boolean;
 
   //OPCIONES DE FROALA
   public froala_options: Object = {
@@ -66,14 +67,16 @@ export class PostNewComponent implements OnInit {
     private _categoryService: CategoryService,
     private _postService: PostService,    
   ) { 
-    this.page_title = "Crear una entrada";
+    this.page_title = "Editar entrada";
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.is_edit = true;
   }
 
   ngOnInit(): void {
     this.post = new Post(1, this.identity.sub, 1, '', '', null);
     this.getCategories();
+    this.getPost();
   }
 
   onSubmit(form){
@@ -123,6 +126,33 @@ export class PostNewComponent implements OnInit {
     console.log("Datos:",JSON.stringify(datos));
     let data = datos.body;
     this.post.image = data.image;    
+  }
+
+  getPost(){
+    //SACAR EL ID DEL POST DE LA URL
+    this._route.params.subscribe(params => {
+      let id = +params['id']; //+ para indicarle que es integer
+      console.log(id);
+
+      //PETICION AJAX PARA SACAR LOS DATOS
+      this._postService.getPost(id).subscribe(
+        response => {
+          
+          //OBTENEMOS LOS DATOS DEL POST
+          if(response.status == "success"){                                  
+            this.post = response.post;
+            console.log(this.post);            
+          }else{                                             
+            this._router.navigate(['/inicio']);
+          }        
+
+        },
+        error => {          
+          console.log(<any>error);          
+          this._router.navigate(['/inicio']);
+        }
+      )
+    })    
   }
 
 }
