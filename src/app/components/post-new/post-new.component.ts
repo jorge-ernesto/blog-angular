@@ -44,17 +44,17 @@ export class PostNewComponent implements OnInit {
         "Authorization" : this._userService.getToken()
       }
     },
-    theme: "dragNDrop",
+    theme: "attachPin",
     hideProgressBar: false,
     hideResetBtn: true,
     hideSelectBtn: false,    
     fileNameIndex : true,
-    replaceTexts: {
-      attachPinBtn: 'Sube tu avatar de usuario',
+    replaceTexts: {      
       selectFileBtn : ' Seleccionar archivos ' , 
       resetBtn : ' Restablecer ' , 
       uploadBtn : ' Subir ' , 
       dragNDropBox : ' Arrastrar y soltar ' ,       
+      attachPinBtn: ' Sube tu avatar de usuario ',
       afterUploadMsg_success : ' ¡Subido con éxito! ' , 
       afterUploadMsg_error : ' ¡Error al cargar ! ' , 
       sizeLimit : ' Límite de tamaño ' 
