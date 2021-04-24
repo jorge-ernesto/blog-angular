@@ -12,7 +12,7 @@ import {PostService} from '../../services/post.service';
 export class PostDetailComponent implements OnInit {
   public page_title: string;
   public post: Post;
-  public status: string;
+  // public status: string;
 
   constructor(
     private _route: ActivatedRoute,
@@ -35,27 +35,22 @@ export class PostDetailComponent implements OnInit {
       //PETICION AJAX PARA SACAR LOS DATOS
       this._postService.getPost(id).subscribe(
         response => {
+          
+          //OBTENEMOS LOS DATOS DEL POST
           if(response.status == "success"){                                  
             this.post = response.post;
-            console.log( this.post );
-
-            this.status = 'success';            
-          }else{          
-            this.status = 'error';              
-            //REDIRECCIONAMOS A INICIO SI HAY UN ERROR
+            console.log(this.post);            
+          }else{                                             
             this._router.navigate(['/inicio']);
           }        
+
         },
-        error => {
-          this.status = 'error';
-          console.log(<any>error);
-          //REDIRECCIONAMOS A INICIO SI HAY UN ERROR
+        error => {          
+          console.log(<any>error);          
           this._router.navigate(['/inicio']);
         }
       )
-    })
-
-    
+    })    
   }
 
 }
