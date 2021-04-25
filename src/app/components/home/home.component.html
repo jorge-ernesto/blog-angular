@@ -30,7 +30,7 @@
                
                <span *ngIf="identity && identity.sub == post.user.id">
                   <a [routerLink]="['/editar-entrada', post.id]" class="btn btn-warning mr-2">Editar</a>
-                  <a [routerLink]="['/inicio']" class="btn btn-danger">Borrar</a>               
+                  <a (click)="deletePost(post.id)" class="btn btn-danger">Borrar</a>               
                </span>
             </div>
          </div>
