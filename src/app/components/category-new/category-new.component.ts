@@ -18,8 +18,8 @@ export class CategoryNewComponent implements OnInit {
   public status: string;
 
   constructor(    
-    private _router: Router,
     private _route: ActivatedRoute,
+    private _router: Router,    
     private _userService: UserService,
     private _categoryService: CategoryService
   ) {

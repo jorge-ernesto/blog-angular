@@ -61,9 +61,9 @@ export class PostNewComponent implements OnInit {
     }
   };
 
-  constructor(
-    private _router: Router,    
+  constructor(        
     private _route: ActivatedRoute,
+    private _router: Router,
     private _userService: UserService,
     private _categoryService: CategoryService,
     private _postService: PostService,    

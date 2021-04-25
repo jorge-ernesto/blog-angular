@@ -62,9 +62,9 @@ export class PostEditComponent implements OnInit {
   };
 
   constructor(
-    private _router: Router,    
     private _route: ActivatedRoute,
-    private _userService: UserService,
+    private _router: Router,        
+    private _userService: UserService,    
     private _categoryService: CategoryService,
     private _postService: PostService,    
   ) { 

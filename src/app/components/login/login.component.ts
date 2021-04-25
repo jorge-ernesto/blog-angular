@@ -16,9 +16,9 @@ export class LoginComponent implements OnInit {
   public user: User;
   public status: string;
   
-  constructor( //Lo normal es darle un valor a las propiedades dentro del constructor, es decir donde estamos ahora
-    private _router: Router,    
+  constructor( //Lo normal es darle un valor a las propiedades dentro del constructor, es decir donde estamos ahora        
     private _route: ActivatedRoute,    
+    private _router: Router,
     private _userService: UserService
   ) {
     this.page_title = 'Identificate';
