@@ -136,7 +136,7 @@ export class PostEditComponent implements OnInit {
     //SACAR EL ID DEL POST DE LA URL
     this._route.params.subscribe(params => {
       let id = +params['id']; //+ para indicarle que es integer
-      console.log(id);
+      //console.log(id);
 
       //PETICION AJAX PARA SACAR LOS DATOS
       this._postService.getPost(id).subscribe(
