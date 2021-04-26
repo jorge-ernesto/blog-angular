@@ -138,7 +138,7 @@ export class PostEditComponent implements OnInit {
       let id = +params['id']; //+ para indicarle que es integer
       //console.log(id);
 
-      //PETICION AJAX PARA SACAR LOS DATOS
+      //PETICION AJAX PARA SACAR LOS DATOS DEL POST
       this._postService.getPost(id).subscribe(
         response => {
           
@@ -156,7 +156,7 @@ export class PostEditComponent implements OnInit {
           this._router.navigate(['/inicio']);
         }
       )
-    })    
+    });    
   }
 
 }

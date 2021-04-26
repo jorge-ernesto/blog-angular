@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import {UserService} from './../../services/user.service';
-import {Category} from './../../models/category'; 
-import {CategoryService} from './../../services/category.service';
+import {UserService} from '../../services/user.service';
+import {Category} from '../../models/category'; 
+import {CategoryService} from '../../services/category.service';
 
 @Component({
   selector: 'app-category-new',

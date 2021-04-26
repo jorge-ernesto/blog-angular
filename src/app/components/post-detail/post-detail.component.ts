@@ -30,9 +30,9 @@ export class PostDetailComponent implements OnInit {
     //SACAR EL ID DEL POST DE LA URL
     this._route.params.subscribe(params => {
       let id = +params['id']; //+ para indicarle que es integer
-      console.log(id);
+      //console.log(id);
 
-      //PETICION AJAX PARA SACAR LOS DATOS
+      //PETICION AJAX PARA SACAR LOS DATOS DEL POST
       this._postService.getPost(id).subscribe(
         response => {
           
@@ -50,7 +50,7 @@ export class PostDetailComponent implements OnInit {
           this._router.navigate(['/inicio']);
         }
       )
-    })    
+    });   
   }
 
 }
