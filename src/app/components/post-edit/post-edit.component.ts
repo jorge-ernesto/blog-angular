@@ -5,7 +5,7 @@ import {CategoryService} from '../../services/category.service';
 import {PostService} from '../../services/post.service';
 import {Category} from 'src/app/models/category';
 import {Post} from '../../models/post';
-import {global} from './../../global';
+import {global} from '../../services/global';
 
 @Component({
     selector: 'app-post-edit',
