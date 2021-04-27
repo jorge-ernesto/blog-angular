@@ -18,81 +18,81 @@ import 'froala-editor/js/third_party/embedly.min';
 //CERRAR TODOS LOS PLUGINS DE FROALA
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [UserService, CategoryService]
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    providers: [UserService, CategoryService]
 })
 export class AppComponent implements OnInit, DoCheck {
-  title = 'blog-angular';
-  public identity;
-  public token;
-  public url;
-  public categories;
-  public interval;
+    title = 'blog-angular';
+    public identity;
+    public token;
+    public url;
+    public categories;
+    public interval;
 
-  constructor(
-    public _userService: UserService,
-    public _categoryService: CategoryService
-  ){
-    this.loadUser();
-    this.url = global.url;
-    console.log("Constructor carga primero");
-  }
-
-  ngOnInit(){
-    console.log("ngOnInit carga despues de constructor");
-    console.log("Webapp cargada correctamente");        
-    
-    this.getCategoriesWithSetInterval();
-  }  
-
-  ngDoCheck(){
-    //NO USAMOS ESTE METODO YA QUE NGDOCHECK SE RECARGA CADA SEGUNDO HACIENDO PETICIONES HTTP, LO CUAL PUEDE SER NO TAN CONVENIENTE
-    // this.loadUser();
-    // if(this.identity && this.identity.sub){ //Solo si esta autenticado
-    //   this.getCategories();
-    // }
-  }
-
-  getCategoriesWithSetInterval(){ 
-    //TRAEMOS AL INICIAR LA APLICACION LA DATA DE CATEGORIAS
-    this.loadUser();
-    if(this.identity && this.identity.sub){ //Solo si esta autenticado
-      this.getCategories();
+    constructor(
+        public _userService: UserService,
+        public _categoryService: CategoryService
+    ){
+        this.loadUser();
+        this.url = global.url;
+        console.log("Constructor carga primero");
     }
 
-    //EJECUTAMOS LA ACTUALIZACION DE CATEGORIAS CADA 30 SEGUNDOS
-    this.interval = setInterval(function(){
-      
-      this.loadUser();
-      if(this.identity && this.identity.sub){ //Solo si esta autenticado        
-        this.getCategories();
-      }
+    ngOnInit(){
+        console.log("ngOnInit carga despues de constructor");
+        console.log("Webapp cargada correctamente");        
+        
+        this.getCategoriesWithSetInterval();
+    }  
 
-    }.bind(this), 30000);    
-  }
+    ngDoCheck(){
+        //NO USAMOS ESTE METODO YA QUE NGDOCHECK SE RECARGA CADA SEGUNDO HACIENDO PETICIONES HTTP, LO CUAL PUEDE SER NO TAN CONVENIENTE
+        // this.loadUser();
+        // if(this.identity && this.identity.sub){ //Solo si esta autenticado
+        //     this.getCategories();
+        // }
+    }
 
-  loadUser(){
-    this.identity = this._userService.getIdentity();
-    this.token = this._userService.getToken();
-    
-    // console.log('CARGAMOS DATOS DE USUARIOS QUE SE CARGAN AUTOMATICAMENTE');
-    // console.log('IDENTITY:',this.identity);
-    // console.log('TOKEN:',this.token);
-  }
+    getCategoriesWithSetInterval(){ 
+        //TRAEMOS AL INICIAR LA APLICACION LA DATA DE CATEGORIAS
+        this.loadUser();
+        if(this.identity && this.identity.sub){ //Solo si esta autenticado
+            this.getCategories();
+        }
 
-  getCategories(){
-    this._categoryService.getCategories().subscribe(
-      response => {
-        if(response.status == "success"){
-          this.categories = response.categories;
-          // console.log(this.categories);
-        }        
-      },
-      error => {
-        console.log(<any>error);
-      }
-    )
-  }
+        //EJECUTAMOS LA ACTUALIZACION DE CATEGORIAS CADA 30 SEGUNDOS
+        this.interval = setInterval(function(){
+          
+            this.loadUser();
+            if(this.identity && this.identity.sub){ //Solo si esta autenticado        
+                this.getCategories();
+            }
+
+        }.bind(this), 30000);    
+    }
+
+    loadUser(){
+        this.identity = this._userService.getIdentity();
+        this.token = this._userService.getToken();
+        
+        // console.log('CARGAMOS DATOS DE USUARIOS QUE SE CARGAN AUTOMATICAMENTE');
+        // console.log('IDENTITY:',this.identity);
+        // console.log('TOKEN:',this.token);
+    }
+
+    getCategories(){
+        this._categoryService.getCategories().subscribe(
+            response => {
+                if(response.status == "success"){
+                    this.categories = response.categories;
+                    // console.log(this.categories);
+                }        
+            },
+            error => {
+                console.log(<any>error);
+            }
+        )
+    }
 }
