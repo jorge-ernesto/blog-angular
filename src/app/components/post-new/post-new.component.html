@@ -16,7 +16,7 @@
     </div>
 
      <!-- FORMULARIO DE ENTRADAS -->
-     <form class="col-md-5 ml-0 pl-0" #postNewForm="ngForm" (ngSubmit)="onSubmit(postNewForm)">
+    <form class="col-md-5 ml-0 pl-0" #postNewForm="ngForm" (ngSubmit)="onSubmit(postNewForm)">
         <div class="form-group">
             <label for="title">Titulo</label>
             <input type="text" name="title" #title="ngModel" [(ngModel)]="post.title" class="
@@ -50,7 +50,8 @@
             <label for="image">Imagen</label>
             <!-- <p>{{url + 'post/image/' + post.image}}</p> -->
 
-            <div *ngIf='is_edit && post && post.image'>
+            <!-- IMAGEN DEL POST EN LA EDICION -->
+            <div *ngIf='is_edit && post.image'>
                 <img src="{{url + 'post/image/' + post.image}}" class="avatar_edit" alt="">
             </div>  
 
