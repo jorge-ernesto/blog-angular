@@ -145,7 +145,9 @@ export class PostEditComponent implements OnInit {
                     //OBTENEMOS LOS DATOS DEL POST
                     if(response.status == "success"){                                  
                         this.post = response.post;
-                        console.log('POST:', this.post);            
+                        console.log('POST:', this.post);   
+                        
+                        this.validarDueñoPost(this.identity, this.post);
                     }else{                                             
                         this._router.navigate(['/inicio']);
                     }        
@@ -156,7 +158,19 @@ export class PostEditComponent implements OnInit {
                     this._router.navigate(['/inicio']);
                 }
             )
-        });    
+        });
+    }
+    
+    validarDueñoPost(identity, post){
+        // console.log("validarDueñoPost");
+        // console.log(identity);
+        // console.log(token);
+        // return;
+        if(identity && identity.sub == post.user_id){
+            return true
+        }else{
+            this._router.navigate(['/error']);
+        }
     }
 
 }
