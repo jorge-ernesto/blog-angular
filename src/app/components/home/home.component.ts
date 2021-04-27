@@ -12,10 +12,10 @@ import {global} from '../../services/global';
 })
 export class HomeComponent implements OnInit {
     public page_title: string;  
-    public url;
-    public posts: Array<Post>;
     public identity;
     public token;
+    public url;
+    public posts: Array<Post>;
 
     constructor(
         private _postService: PostService,

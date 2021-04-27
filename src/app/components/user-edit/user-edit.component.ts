@@ -14,9 +14,9 @@ export class UserEditComponent implements OnInit {
     public page_title: string;
     public identity;
     public token;
-    public user: User;  
-    public status; 
     public url;
+    public user: User;  
+    public status;     
 
     //OPCIONES DE FROALA
     public froala_options: Object = {
