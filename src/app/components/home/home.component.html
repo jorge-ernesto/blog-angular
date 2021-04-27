@@ -1,12 +1,14 @@
-<div class="container-fluid" *ngIf="!posts">
+<div class="container-fluid mt-3" *ngIf="!posts">
    Cargando...   
 </div>
 
-<div class="container-fluid" *ngIf="posts">   
+<div class="container-fluid mt-3" *ngIf="posts">   
    <h1>{{page_title}}</h1>
+   <hr>
    
    <div class="card-columns">
-      <div class="card w-100" *ngFor="let post of posts"> <!-- RECORREMOS POSTS -->
+      <!-- RECORREMOS POSTS -->
+      <div class="card w-100" *ngFor="let post of posts">
 
          <div class="card-header">
             <h3>
