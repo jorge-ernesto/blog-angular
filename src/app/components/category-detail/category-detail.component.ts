@@ -2,26 +2,34 @@ import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import {Category} from '../../models/category'; 
 import {CategoryService} from '../../services/category.service';
+import {UserService} from '../../services/user.service';
+import {PostService} from '../../services/post.service';
 import {global} from '../../services/global';
 
 @Component({
     selector: 'app-category-detail',
     templateUrl: './category-detail.component.html',
     styleUrls: ['./category-detail.component.css'],
-    providers: [CategoryService]
+    providers: [CategoryService, UserService, PostService]
 })
 export class CategoryDetailComponent implements OnInit {
     public page_title: string;
+    public identity;
+    public token;
+    public url;  
     public category: Category;
-    public posts: any;
-    public url: string;
+    public posts: any;      
 
     constructor(
         private _route: ActivatedRoute,
         private _router: Router,
-        private _categoryService: CategoryService
+        private _categoryService: CategoryService,
+        private _userService: UserService,
+        private _postService: PostService,
     ) { 
         this.url = global.url;
+        this.identity = this._userService.getIdentity();
+        this.token = this._userService.getToken();
     }
 
     ngOnInit(): void {
@@ -59,7 +67,6 @@ export class CategoryDetailComponent implements OnInit {
                                 console.log(<any>error);
                             }
                         );
-
                     }else{
                         this._router.navigate(['/inicio']);
                     }
@@ -69,7 +76,35 @@ export class CategoryDetailComponent implements OnInit {
                     console.log(<any>error);
                 }
             );
-        })
+        });
+    }
+
+    getPosts(){
+        this._postService.getPosts().subscribe(
+            response => {
+                if(response.status == 'success'){
+                    this.posts = response.posts;
+                    console.log('POSTS:', this.posts);
+                }
+            },
+            error => {        
+                console.log(<any>error);
+            }
+        );
+    }
+
+    deletePost(id){
+        this._postService.delete(id, this.token).subscribe(
+            response => {
+                if(response.status == 'success'){          
+                    console.log('RESPONSE DELETE:', response);
+                    this.getPosts();          
+                }
+            },
+            error => {        
+                console.log(<any>error);
+            }
+        )
     }
 
 }
