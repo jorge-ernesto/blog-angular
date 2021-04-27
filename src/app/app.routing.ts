@@ -13,22 +13,26 @@ import {PostDetailComponent} from './components/post-detail/post-detail.componen
 import {PostEditComponent} from './components/post-edit/post-edit.component';
 import {CategoryDetailComponent} from './components/category-detail/category-detail.component';
 
+//IMPORTAMOS GUARDS
+import {DefaultGuard} from './services/default.guard';
+import {IdentityGuard} from './services/identity.guard';
+
 //DEFINIR RUTAS
 const APP_ROUTES: Routes = [
-    {path: ''            , component: LoginComponent},
-    {path: 'login'       , component: LoginComponent},
-    {path: 'logout/:sure', component: LoginComponent},
-    {path: 'inicio'      , component: HomeComponent},    
-    {path: 'home'        , component: HomeComponent},    
-    {path: 'register'    , component: RegisterComponent},    
-    {path: 'ajustes'     , component: UserEditComponent},
+    {path: ''            , component: LoginComponent   , canActivate: [DefaultGuard]},
+    {path: 'login'       , component: LoginComponent   , canActivate: [DefaultGuard]},
+    {path: 'logout/:sure', component: LoginComponent   , canActivate: [DefaultGuard]},
+    {path: 'inicio'      , component: HomeComponent    , canActivate: [DefaultGuard]},
+    {path: 'home'        , component: HomeComponent    , canActivate: [DefaultGuard]},
+    {path: 'register'    , component: RegisterComponent, canActivate: [DefaultGuard]},
+    {path: 'ajustes'     , component: UserEditComponent, canActivate: [IdentityGuard]},
 
-    {path: 'crear-categoria'   , component: CategoryNewComponent},
-    {path: 'crear-entrada'     , component: PostNewComponent},
-    {path: 'entrada/:id'       , component: PostDetailComponent},
-    {path: 'editar-entrada/:id', component: PostEditComponent},
-    {path: 'categoria/:id'     , component: CategoryDetailComponent},
-    {path: '**'                , component: ErrorComponent}
+    {path: 'crear-categoria'   , component: CategoryNewComponent   , canActivate: [IdentityGuard]},
+    {path: 'crear-entrada'     , component: PostNewComponent       , canActivate: [IdentityGuard]},
+    {path: 'entrada/:id'       , component: PostDetailComponent    , canActivate: [DefaultGuard]},
+    {path: 'editar-entrada/:id', component: PostEditComponent      , canActivate: [IdentityGuard]},
+    {path: 'categoria/:id'     , component: CategoryDetailComponent, canActivate: [DefaultGuard]},
+    {path: '**'                , component: ErrorComponent         , canActivate: [DefaultGuard]}
 ];
 
 //EXPORTAR CONFIGURACION

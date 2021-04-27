@@ -18,6 +18,11 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
 import { PostEditComponent } from './components/post-edit/post-edit.component';
 import { CategoryDetailComponent } from './components/category-detail/category-detail.component';
 
+//IMPORTAMOS GUARDS 
+import {UserService} from './services/user.service'; //Ademas de añadir los guards, y para que estos funcionen es importante añadir el UserService porque demanera global necesitamos tener acceso a ese servicio
+import {DefaultGuard} from './services/default.guard';
+import {IdentityGuard} from './services/identity.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +45,11 @@ import { CategoryDetailComponent } from './components/category-detail/category-d
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     AngularFileUploaderModule,
   ],
-  providers: [],
+  providers: [
+    UserService,
+    DefaultGuard,
+    IdentityGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
