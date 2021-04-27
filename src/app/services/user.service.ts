@@ -21,6 +21,9 @@ export class UserService{
     }
 
     register(user): Observable<any>{
+        //Limpiar campo description (editor texto enriquecido) htmlEntities > utf8
+        user.description = global.htmlEntities(user.description);
+
         let json = JSON.stringify(user);
         let params = 'json='+json;        
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
@@ -41,6 +44,9 @@ export class UserService{
     }
 
     update(user, token): Observable<any>{
+        //Limpiar campo description (editor texto enriquecido) htmlEntities > utf8
+        user.description = global.htmlEntities(user.description);
+
         let json = JSON.stringify(user);
         let params = "json="+json;
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
