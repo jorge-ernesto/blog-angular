@@ -70,7 +70,7 @@ export class PostCreateComponent implements OnInit {
         private _categoryService: CategoryService,
         private _postService: PostService,    
     ) { 
-        this.page_title = "Crear nuevo post";
+        this.page_title = "Crear post";
         this.url = global.url;
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
@@ -95,7 +95,7 @@ export class PostCreateComponent implements OnInit {
                 if(response.status == "success"){          
                     this.status = "success";
                     form.reset();          
-                    this._router.navigate(['/crear-entrada']);
+                    this._router.navigate(['/post/create']);
                 }else{
                     this.status = "error";
                 }
@@ -115,6 +115,7 @@ export class PostCreateComponent implements OnInit {
                 //OBTENEMOS CATEGORIAS
                 if(response.status == 'success'){
                     this.categories = response.categories;
+                    this.cargarCombo(response);
                     console.log("CATEGORIAS:", this.categories);
                 }
 
@@ -129,6 +130,12 @@ export class PostCreateComponent implements OnInit {
         console.log("Datos:",JSON.stringify(datos));
         let data = datos.body;
         this.post.image = data.image;    
+    }
+
+    cargarCombo(response){
+        if(this.is_edit == false){
+            this.post.category_id = response.categories[0].id; //De este modo el combo Categorias, mostrara siempre el primer elemento solo si es vista crear
+        }        
     }
 
 }

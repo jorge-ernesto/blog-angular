@@ -56,7 +56,7 @@ export class PostEditComponent implements OnInit {
             resetBtn : ' Restablecer ' , 
             uploadBtn : ' Subir ' , 
             dragNDropBox : ' Arrastrar y soltar ' ,       
-            attachPinBtn: ' Sube tu avatar de usuario ',
+            attachPinBtn: ' Sube tu imagen ',
             afterUploadMsg_success : ' ¡Subido con éxito! ' , 
             afterUploadMsg_error : ' ¡Error al cargar ! ' , 
             sizeLimit : ' Límite de tamaño ' 
@@ -70,7 +70,7 @@ export class PostEditComponent implements OnInit {
         private _categoryService: CategoryService,
         private _postService: PostService,    
     ) { 
-        this.page_title = "Editar entrada";
+        this.page_title = "Editar post";
         this.url = global.url;
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
@@ -96,9 +96,8 @@ export class PostEditComponent implements OnInit {
                 if(response.status == "success"){          
                     this.status = "success";
                     //this.post = response.post; //Realmente no es necesario
-                    //this._router.navigate(['/inicio']);
-                    //this._router.navigate(['/editar-entrada', this.post.id]);          
-                    this._router.navigate(['/entrada', this.post.id]);          
+                    //this._router.navigate(['/post', this.post.id, 'edit']);
+                    this._router.navigate(['/home']);
                 }else{
                     this.status = "error";
                 }
@@ -118,6 +117,7 @@ export class PostEditComponent implements OnInit {
                 //OBTENEMOS CATEGORIAS
                 if(response.status == 'success'){
                   this.categories = response.categories;
+                  this.cargarCombo(response);
                   console.log("CATEGORIAS:", this.categories);
                 }
 
@@ -132,6 +132,12 @@ export class PostEditComponent implements OnInit {
         console.log("Datos:",JSON.stringify(datos));
         let data = datos.body;
         this.post.image = data.image;    
+    }
+
+    cargarCombo(response){
+        if(this.is_edit == false){
+            this.post.category_id = response.categories[0].id; //De este modo el combo Categorias, mostrara siempre el primer elemento solo si es vista crear
+        }        
     }
 
     getPost(){
@@ -151,13 +157,13 @@ export class PostEditComponent implements OnInit {
                         
                         this.validarDueñoPost(this.identity, this.post);
                     }else{                                             
-                        this._router.navigate(['/inicio']);
+                        this._router.navigate(['/home']);
                     }        
 
                 },
                 error => {          
                     console.log(<any>error);          
-                    this._router.navigate(['/inicio']);
+                    this._router.navigate(['/home']);
                 }
             )
         });

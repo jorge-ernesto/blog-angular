@@ -18,6 +18,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 import { CategoryIndexComponent } from './components/category/category-index/category-index.component';
 import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
+import { CategoryEditComponent } from './components/category/category-edit/category-edit.component';
 import { CategoryPostComponent } from './components/category/category-post/category-post.component';
 import { PostListComponent } from './components/category/post-list/post-list.component';
 import { CategoryNavItemComponent } from './components/category/category-nav-item/category-nav-item.component';
@@ -47,7 +48,8 @@ import {IdentityGuard} from './services/identity.guard';
     PostCreateComponent,
     PostEditComponent,
     PostDetailComponent,
-    ProfileComponent
+    ProfileComponent,
+    CategoryEditComponent
   ],
   imports: [
     BrowserModule,

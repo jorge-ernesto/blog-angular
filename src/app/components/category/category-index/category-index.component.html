@@ -26,7 +26,7 @@
                <tr *ngFor="let category of data | paginate: { itemsPerPage: perPage, currentPage: page, totalItems: total }">
                   <td>{{category.id}}</td>
                   <td>{{category.name}}</td>
-                  <td><button class="btn btn-success btn-sm">Editar</button></td>
+                  <td><button class="btn btn-success btn-sm" [routerLink]="['/category', category.id, 'edit']">Editar</button></td>
                   <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
                </tr>
          </tbody>         

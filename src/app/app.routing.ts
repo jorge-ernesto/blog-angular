@@ -11,6 +11,7 @@ import {ProfileComponent} from './components/profile/profile.component';
 
 import {CategoryIndexComponent} from './components/category/category-index/category-index.component';
 import {CategoryCreateComponent} from './components/category/category-create/category-create.component';
+import {CategoryEditComponent} from './components/category/category-edit/category-edit.component';
 import {CategoryPostComponent} from './components/category/category-post/category-post.component';
 
 import {PostCreateComponent} from './components/post/post-create/post-create.component';
@@ -33,6 +34,7 @@ const APP_ROUTES: Routes = [
            
     {path: 'category'          , component: CategoryIndexComponent },                               //Vista para listar categorias
     {path: 'category/create'   , component: CategoryCreateComponent, canActivate: [IdentityGuard]}, //Vista para crear nueva categoria    
+    {path: 'category/:id/edit' , component: CategoryEditComponent  , canActivate: [IdentityGuard]}, //Vista para editar una categoria
     {path: 'category/posts/:id', component: CategoryPostComponent  },                               //Vista para listar posts por categoria
     
     {path: 'post/create'       , component: PostCreateComponent    , canActivate: [IdentityGuard]}, //Vista para crear posts
