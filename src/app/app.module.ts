@@ -20,6 +20,7 @@ import { CategoryIndexComponent } from './components/category/category-index/cat
 import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
 import { CategoryPostComponent } from './components/category/category-post/category-post.component';
 import { PostListComponent } from './components/category/post-list/post-list.component';
+import { CategoryNavItemComponent } from './components/category/category-nav-item/category-nav-item.component';
 
 import { PostCreateComponent } from './components/post/post-create/post-create.component';
 import { PostEditComponent } from './components/post/post-edit/post-edit.component';
@@ -42,6 +43,7 @@ import {IdentityGuard} from './services/identity.guard';
     CategoryCreateComponent,
     CategoryPostComponent,
     PostListComponent,
+    CategoryNavItemComponent,
     PostCreateComponent,
     PostEditComponent,
     PostDetailComponent,
