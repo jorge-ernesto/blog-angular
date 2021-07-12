@@ -1,1 +1,26 @@
-<p>category works!</p>
+<div class="col-md-12 mt-3">
+   <h1>{{page_title}}</h1>
+   <hr> 
+   
+   <button class="btn btn-success">Crear Categoria</button><br/><br/>   
+   <div class="table-responsive">
+      <table id="table_id" class="table table-bordered table-striped table-hover">
+         <thead>
+               <tr>
+                  <th>id</th>
+                  <th>nombre</th>                  
+                  <th>editar</th>
+                  <th>eliminar</th>                  
+               </tr>
+         </thead>
+         <tbody>
+               <tr *ngFor="let category of categories_.data">
+                  <td>{{category.id}}</td>
+                  <td>{{category.name}}</td>
+                  <td><button class="btn btn-success btn-sm">Editar</button></td>
+                  <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
+               </tr>
+         </tbody>
+      </table>
+   </div>
+</div>

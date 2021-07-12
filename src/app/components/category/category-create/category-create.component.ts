@@ -56,7 +56,7 @@ export class CategoryCreateComponent implements OnInit {
                 if(response.status == "success"){          
                     this.status = 'success';
                     form.reset();          
-                    this._router.navigate(['/crear-categoria']);
+                    this._router.navigate(['/category/create']);
                 }else{             
                     this.status = 'error';          
                 }
