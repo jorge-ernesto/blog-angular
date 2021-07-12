@@ -22,6 +22,7 @@ import { CategoryDetailComponent } from './components/category-detail/category-d
 import {UserService} from './services/user.service'; //Ademas de añadir los guards, y para que estos funcionen es importante añadir el UserService porque demanera global necesitamos tener acceso a ese servicio
 import {DefaultGuard} from './services/default.guard';
 import {IdentityGuard} from './services/identity.guard';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {IdentityGuard} from './services/identity.guard';
     PostNewComponent,
     PostDetailComponent,
     PostEditComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

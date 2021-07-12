@@ -12,6 +12,7 @@ import {PostNewComponent} from './components/post-new/post-new.component';
 import {PostDetailComponent} from './components/post-detail/post-detail.component';
 import {PostEditComponent} from './components/post-edit/post-edit.component';
 import {CategoryDetailComponent} from './components/category-detail/category-detail.component';
+import {ProfileComponent} from './components/profile/profile.component';
 
 //IMPORTAMOS GUARDS
 import {DefaultGuard} from './services/default.guard';
@@ -28,10 +29,12 @@ const APP_ROUTES: Routes = [
     {path: 'ajustes'     , component: UserEditComponent, canActivate: [IdentityGuard]},
 
     {path: 'crear-categoria'   , component: CategoryNewComponent   , canActivate: [IdentityGuard]},
+    {path: 'categoria/:id'     , component: CategoryDetailComponent, canActivate: [DefaultGuard]},
     {path: 'crear-entrada'     , component: PostNewComponent       , canActivate: [IdentityGuard]},
     {path: 'entrada/:id'       , component: PostDetailComponent    , canActivate: [DefaultGuard]},
-    {path: 'editar-entrada/:id', component: PostEditComponent      , canActivate: [IdentityGuard]},
-    {path: 'categoria/:id'     , component: CategoryDetailComponent, canActivate: [DefaultGuard]},
+    {path: 'editar-entrada/:id', component: PostEditComponent      , canActivate: [IdentityGuard]},    
+    
+    {path: 'perfil/:id'        , component: ProfileComponent       , canActivate: [DefaultGuard]},
     {path: '**'                , component: ErrorComponent         , canActivate: [DefaultGuard]}
 ];
 
