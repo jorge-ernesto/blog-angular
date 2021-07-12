@@ -70,5 +70,17 @@ export var global = {
                           .replace('&yacute;', 'ý')  
                           .replace('&thorn;', 'þ')
                           .replace('&yuml;', 'ÿ');
-    }  
+    }, 
+
+    getFechaActual: function() {
+        let date: any = new Date();
+        date = date.getDate() + "/" + (date.getMonth() +1) + "/" + date.getFullYear();
+
+        let d: any       = new Date(date.split("/").reverse().join("-"));
+        d.setMinutes(d.getMinutes() + d.getTimezoneOffset());
+        let dd: any      = d.getDate();     if(dd < 10) dd='0'+dd;
+        let mm: any      = d.getMonth()+1;  if(mm < 10) mm='0'+mm;
+        let yy: any      = d.getFullYear();
+        return yy+"-"+mm+"-"+dd;
+    }
 }

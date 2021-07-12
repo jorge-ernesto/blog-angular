@@ -3,6 +3,10 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import {UserService} from '../../services/user.service';
 import {Category} from '../../models/category'; 
 import {CategoryService} from '../../services/category.service';
+import {global} from '../../services/global';
+
+declare var jQuery:any;
+declare var $:any;
 
 @Component({
     selector: 'app-category-new',
@@ -21,19 +25,24 @@ export class CategoryNewComponent implements OnInit {
         private _route: ActivatedRoute,
         private _router: Router,    
         private _userService: UserService,
-        private _categoryService: CategoryService
+        private _categoryService: CategoryService,
     ) {
         this.page_title = "Crear nueva categoria";
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
-        this.category = new Category(1, '');    
-        this.status = "";
-    }
+        this.category = new Category(1, '', '');    
+        this.status = "";                
+    }    
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {       
+        // Cambiar la fecha seteando el modelo        
+        this.category.date_publication = global.getFechaActual();
 
-    onSubmit(form){    
+        // Cambiar la fecha con Jquery
+        // $('#date_publication').val('2020-01-01');
+    }       
+
+    onSubmit(form){
         this.status = "";
 
         //ENVIAMOS INFORMACION DE CATEGORIA Y TOKEN
