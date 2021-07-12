@@ -13,6 +13,16 @@
    width: 50px;
 }
 
+.avatar_mask_profile{
+   width: 90px;
+   height: 90px;
+   border-radius: 900px;
+   overflow: hidden;
+}
+.avatar_mask_profile img{
+   width: 90px;
+}
+
 /* Significa que tendra un alto maximo de 200px y todo lo que se salga de ahi se ocultara, lo comentamos ya que los cards se ven muy bien sin la restriccion de altura */
 /* .post-image-mask{ 
    height: 200px;
