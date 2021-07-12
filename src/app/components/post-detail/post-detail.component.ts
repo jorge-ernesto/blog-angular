@@ -11,6 +11,7 @@ import {UserService} from '../../services/user.service';
     providers: [PostService, UserService]
 })
 export class PostDetailComponent implements OnInit {
+    
     public page_title: string;   
     public post: Post;
     public identity;

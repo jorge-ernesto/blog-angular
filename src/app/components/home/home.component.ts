@@ -11,6 +11,7 @@ import {global} from '../../services/global';
     providers: [PostService, UserService]
 })
 export class HomeComponent implements OnInit {
+    
     public page_title: string;  
     public identity;
     public token;

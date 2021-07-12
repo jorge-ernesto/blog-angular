@@ -13,6 +13,7 @@ import {global} from '../../services/global';
     providers: [CategoryService, UserService, PostService]
 })
 export class CategoryDetailComponent implements OnInit {
+    
     public page_title: string;
     public identity;
     public token;

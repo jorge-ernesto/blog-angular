@@ -15,6 +15,7 @@ declare var $:any;
     providers: [UserService, CategoryService]
 })
 export class CategoryNewComponent implements OnInit {
+    
     public page_title: string;  
     public identity;
     public token;

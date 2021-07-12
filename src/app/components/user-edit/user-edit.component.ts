@@ -11,6 +11,7 @@ import {global} from '../../services/global';
     providers: [UserService]
 })
 export class UserEditComponent implements OnInit {
+    
     public page_title: string;
     public identity;
     public token;

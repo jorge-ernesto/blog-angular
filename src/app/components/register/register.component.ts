@@ -9,6 +9,7 @@ import {UserService} from '../../services/user.service';
     providers: [UserService]
 })
 export class RegisterComponent implements OnInit {
+    
     public page_title: string;
     public user: User;
     public status: string;

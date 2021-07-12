@@ -14,6 +14,7 @@ import {global} from '../../services/global';
     providers: [UserService, PostService] //ESTO ES MUY IMPORTANTE, SIN CARGARLO EN LOS PROVIDERS NO FUNCIONARA
 })
 export class PostNewComponent implements OnInit {
+    
     public page_title: string;
     public identity;
     public token;  

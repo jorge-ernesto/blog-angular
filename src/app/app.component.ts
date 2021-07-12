@@ -24,6 +24,7 @@ import 'froala-editor/js/third_party/embedly.min';
     providers: [UserService, CategoryService]
 })
 export class AppComponent implements OnInit, DoCheck {
+    
     title = 'blog-angular';
     public identity;
     public token;
