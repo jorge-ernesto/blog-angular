@@ -23,6 +23,7 @@ import {UserService} from './services/user.service'; //Ademas de añadir los gua
 import {DefaultGuard} from './services/default.guard';
 import {IdentityGuard} from './services/identity.guard';
 import { ProfileComponent } from './components/profile/profile.component';
+import { PostListComponent } from './components/post-list/post-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     PostDetailComponent,
     PostEditComponent,
     CategoryDetailComponent,
-    ProfileComponent
+    ProfileComponent,
+    PostListComponent
   ],
   imports: [
     BrowserModule,
