@@ -1,8 +1,11 @@
-<div class="col-md-12 mt-3">
-   <h1>{{page_title}}</h1>
+<div class="container-fluid col-md-12 mt-3">
+   <h1>
+      {{page_title}}                
+   </h1>   
    <hr> 
+      
+   <button class="btn btn-success mb-2">Crear Categoria</button>  
    
-   <button class="btn btn-success">Crear Categoria</button><br/><br/>   
    <div class="table-responsive">
       <table id="table_id" class="table table-bordered table-striped table-hover">
          <thead>
@@ -14,13 +17,24 @@
                </tr>
          </thead>
          <tbody>
-               <tr *ngFor="let category of categories_.data">
+               <tr *ngFor="let category of data | paginate: { itemsPerPage: perPage, currentPage: page, totalItems: total }">
                   <td>{{category.id}}</td>
                   <td>{{category.name}}</td>
                   <td><button class="btn btn-success btn-sm">Editar</button></td>
                   <td><button class="btn btn-danger btn-sm">Eliminar</button></td>
                </tr>
-         </tbody>
+         </tbody>         
       </table>
+
+      <div class="d-flex justify-content-between">                    
+         <!-- Showing {{from}} to {{to}} of {{total}} entries -->
+         Mostrando {{from}} de {{to}} de un total de {{total}} registros                                
+      
+         <pagination-controls class="paginator"
+               [previousLabel]="'Anterior'"
+               [nextLabel]="'Siguiente'"
+               (pageChange)="pageChanged($event)">
+         </pagination-controls>                        
+      </div>
    </div>
 </div>
