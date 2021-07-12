@@ -19,8 +19,8 @@
     <form class="col-md-5 ml-0 pl-0" #postNewForm="ngForm" (ngSubmit)="onSubmit(postNewForm)">
         <div class="form-group">
             <label for="title">Titulo</label>
-            <input type="text" name="title" #title="ngModel" [(ngModel)]="post.title" class="
-            form-control" required pattern="[a-z A-Z 0-9]+">
+            <input type="text" name="title" class="form-control" #title="ngModel" [(ngModel)]="post.title" 
+            required pattern="[a-z A-Z 0-9]+">
             
             <small *ngIf="!title.valid && title.touched" class="invalid-feedback d-block">
                 El titulo no es valido
@@ -30,8 +30,8 @@
         <div class="form-group">
             <label for="content">Contenido</label>
             <div [froalaEditor]="froala_options" [(froalaModel)]="post.content"></div>
-            <input type="hidden" name="content" #content="ngModel" [(ngModel)]="post.content" class="
-            form-control" required>            
+            <input type="hidden" name="content" class="form-control" #content="ngModel" [(ngModel)]="post.content"
+            required>            
 
             <small *ngIf="!content.valid" class="invalid-feedback d-block">
                 El contenido no es valido
@@ -40,8 +40,7 @@
 
         <div class="form-group">
             <label for="title">Categoria</label>                                    
-            <select name="category_id" #category_id="ngModel" [(ngModel)]="post.category_id" class="
-            form-control">
+            <select name="category_id" class="form-control" #category_id="ngModel" [(ngModel)]="post.category_id">
                 <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
             </select>
         </div>
