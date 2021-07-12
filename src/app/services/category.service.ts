@@ -29,10 +29,10 @@ export class CategoryService{
         return this._http.get(this.url+'category', {headers: headers});
     }
 
-    getCategoriesPaginate(page): Observable<any>{        
+    getCategoriesPaginate(page, search): Observable<any>{        
         let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this._http.get(this.url+'category?page='+page, {headers: headers});
+        return this._http.get(this.url+'category?page='+page+'&search='+search, {headers: headers});
     }
 
     getCategory(id): Observable<any>{

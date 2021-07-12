@@ -17,6 +17,7 @@ export class CategoryListComponent implements OnInit {
     public token;
     public categories_: any;
     public status: string;
+    public search: string;
 
     //Variables para ngx-pagination
     public data   : any;    //Variable que contendra la información
@@ -45,19 +46,24 @@ export class CategoryListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        //Recogemos informacion de url
-        this._route.params.subscribe((params: Params) => {
-            this.page = +params.page || 1; //Si no encuentra el primer dato, mostrara 1
-            this.getCategoriesPaginate(this.page);
+        /**
+         * Metodo para recorger informacion de la url al iniciar componente
+         * queryParams obtiene parametros GET como ?page=1, funciona diferente a params que obtiene las variables de la url especificadas en app.routing.ts
+         */
+        this._route.queryParams.subscribe((params: Params) => {
+            this.page   = +params.page || 1; //Si no encuentra el primer dato o falla de algun modo al obtenerlo, mostrara 1            
+            this.search = params.search || undefined; //Tambien puede ser || null
+            this.getCategoriesPaginate(this.page, this.search);
             window.scrollTo(0, 0);
+            // console.log('page', this.page);
         });    
     }
 
     /**
      * Metodo que obtiene la información de categorias con paginacion
      */
-    getCategoriesPaginate(page){
-        this._categoryService.getCategoriesPaginate(page).subscribe(
+    getCategoriesPaginate(page, search){
+        this._categoryService.getCategoriesPaginate(page, search).subscribe(
             response => {
                 if(response.status == 'success'){
                     this.categories_ = response.categories_;
@@ -85,8 +91,10 @@ export class CategoryListComponent implements OnInit {
      * Metodo que sirve para hacer el cambio de pagina facilitado por ngx-pagination
      */
     pageChanged(page) {
-        this.page = page;
-        const queryParams: Params = {page};
+        this.page = page; //Le asigna el valor a Pagina en la que nos encontramos, por defecto es 1
+        let search = this.search;
+
+        const queryParams: Params = {page, search};
         this._router.navigate(
             [],
             {
@@ -94,7 +102,7 @@ export class CategoryListComponent implements OnInit {
                 queryParams
             }
         );
-        this.getCategoriesPaginate(this.page);
+        this.getCategoriesPaginate(this.page, this.search);
     }
 
 }
