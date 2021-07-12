@@ -9,7 +9,7 @@ import {ErrorComponent} from './components/error/error.component';
 import {UserEditComponent} from './components/user-edit/user-edit.component';
 import {ProfileComponent} from './components/profile/profile.component';
 
-import {CategoryListComponent} from './components/category/category-list/category-list.component';
+import {CategoryIndexComponent} from './components/category/category-index/category-index.component';
 import {CategoryCreateComponent} from './components/category/category-create/category-create.component';
 import {CategoryPostComponent} from './components/category/category-post/category-post.component';
 
@@ -23,24 +23,23 @@ import {IdentityGuard} from './services/identity.guard';
 
 //DEFINIR RUTAS
 const APP_ROUTES: Routes = [
-    {path: ''            , component: LoginComponent   , canActivate: [DefaultGuard]},
-    {path: 'login'       , component: LoginComponent   , canActivate: [DefaultGuard]},
-    {path: 'logout/:sure', component: LoginComponent   , canActivate: [DefaultGuard]},
-    {path: 'inicio'      , component: HomeComponent    , canActivate: [DefaultGuard]},
-    {path: 'home'        , component: HomeComponent    , canActivate: [DefaultGuard]},
-    {path: 'register'    , component: RegisterComponent, canActivate: [DefaultGuard]},
-    {path: 'ajustes'     , component: UserEditComponent, canActivate: [IdentityGuard]},
-    {path: 'perfil/:id'  , component: ProfileComponent , canActivate: [DefaultGuard]},
-
-    {path: 'category'          , component: CategoryListComponent, canActivate: [IdentityGuard]},
-    {path: 'category/create'   , component: CategoryCreateComponent , canActivate: [IdentityGuard]},
-    {path: 'category/posts/:id', component: CategoryPostComponent, canActivate: [DefaultGuard]},
+    {path: ''            , component: LoginComponent   }, //Vista para loguearse, tambien puede redirigir a inicio
+    {path: 'login'       , component: LoginComponent   }, //Vista para loguearse
+    {path: 'logout/:sure', component: LoginComponent   }, //Funcionalidad para desloguear al usuario
+    {path: 'home'        , component: HomeComponent    }, //Vista home
+    {path: 'register'    , component: RegisterComponent}, //Vista para registrar un nuevo usuario
+    {path: 'ajustes'     , component: UserEditComponent, canActivate: [IdentityGuard]}, //Vista para editar un usuario logueado
+    {path: 'perfil/:id'  , component: ProfileComponent }, //Vista para listar post por usuario
+           
+    {path: 'category'          , component: CategoryIndexComponent },                               //Vista para listar categorias
+    {path: 'category/create'   , component: CategoryCreateComponent, canActivate: [IdentityGuard]}, //Vista para crear nueva categoria    
+    {path: 'category/posts/:id', component: CategoryPostComponent  },                               //Vista para listar posts por categoria
     
-    {path: 'post/create'       , component: PostCreateComponent     , canActivate: [IdentityGuard]},
-    {path: 'post/:id'          , component: PostDetailComponent  , canActivate: [DefaultGuard]},
-    {path: 'post/:id/edit'     , component: PostEditComponent    , canActivate: [IdentityGuard]},    
+    {path: 'post/create'       , component: PostCreateComponent    , canActivate: [IdentityGuard]}, //Vista para crear posts
+    {path: 'post/:id/edit'     , component: PostEditComponent      , canActivate: [IdentityGuard]}, //Vista para editar un post
+    {path: 'post/:id'          , component: PostDetailComponent    },                               //Vista para mostrar un post
         
-    {path: '**'                , component: ErrorComponent       , canActivate: [DefaultGuard]}
+    {path: '**'                , component: ErrorComponent         }                                //vista renderizada en caso el IdentityGuard falle
 ];
 
 //EXPORTAR CONFIGURACION

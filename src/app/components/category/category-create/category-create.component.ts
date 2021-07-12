@@ -55,7 +55,7 @@ export class CategoryCreateComponent implements OnInit {
                 //OBTENEMOS INFORMACION DE RESPUESTA        
                 if(response.status == "success"){          
                     this.status = 'success';
-                    form.reset();          
+                    this.clearForm(form);
                     this._router.navigate(['/category/create']);
                 }else{             
                     this.status = 'error';          
@@ -67,6 +67,17 @@ export class CategoryCreateComponent implements OnInit {
                 console.log(<any>error);
             }
         );
+    }
+
+    /**
+     * Uso de form.controls en lugar de form.reset
+     * @link https://stackoverflow.com/questions/50197347/how-to-reset-only-specific-fields-of-form-in-angular-5
+     */
+    clearForm(form){
+        // console.log('form', form);
+        // form.reset();        
+        form.controls['name'].reset();
+        // form.controls['date_publication'].reset();
     }
 
 }

@@ -56,7 +56,7 @@ export class PostCreateComponent implements OnInit {
             resetBtn : ' Restablecer ' , 
             uploadBtn : ' Subir ' , 
             dragNDropBox : ' Arrastrar y soltar ' ,       
-            attachPinBtn: ' Sube tu avatar de usuario ',
+            attachPinBtn: ' Sube tu imagen ',
             afterUploadMsg_success : ' ¡Subido con éxito! ' , 
             afterUploadMsg_error : ' ¡Error al cargar ! ' , 
             sizeLimit : ' Límite de tamaño ' 
@@ -70,7 +70,7 @@ export class PostCreateComponent implements OnInit {
         private _categoryService: CategoryService,
         private _postService: PostService,    
     ) { 
-        this.page_title = "Crear una entrada";
+        this.page_title = "Crear nuevo post";
         this.url = global.url;
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();

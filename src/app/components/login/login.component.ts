@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
                                 localStorage.setItem('token', JSON.stringify(this.token));                
 
                                 //REDIRECCIONAMOS A LA PAGINA PRINCIPAL
-                                this._router.navigate(['/inicio']);
+                                this._router.navigate(['/home']);
                             }else{
                                 this.status = "error";
                             }
@@ -98,11 +98,11 @@ export class LoginComponent implements OnInit {
         })
     }
 
-    //VERIFICAMOS QUE EL USUARIO ESTE AUTENTICADO PARA REDIRECCIONAR A INICIO
+    //VERIFICAMOS QUE EL USUARIO ESTE AUTENTICADO PARA REDIRECCIONAR A HOME
     verificarUsuarioAutenticado(){
         this.identity = this._userService.getIdentity();    
         if(this.identity){
-            this._router.navigate(['/inicio']);
+            this._router.navigate(['/home']);
         }
     }
 

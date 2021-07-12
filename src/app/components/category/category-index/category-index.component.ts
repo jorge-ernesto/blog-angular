@@ -6,11 +6,11 @@ import {CategoryService} from '../../../services/category.service';
 
 @Component({
     selector: 'app-category',
-    templateUrl: './category-list.component.html',
-    styleUrls: ['./category-list.component.css'],
+    templateUrl: './category-index.component.html',
+    styleUrls: ['./category-index.component.css'],
     providers: [UserService, CategoryService]
 })
-export class CategoryListComponent implements OnInit {
+export class CategoryIndexComponent implements OnInit {
 
     public page_title: string;
     public identity;

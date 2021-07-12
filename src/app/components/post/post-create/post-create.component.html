@@ -1,10 +1,10 @@
 <div class="col-md-12 mt-3">
     <h1>{{page_title}}</h1>  
     <p *ngIf="!is_edit">
-        Añade un nuevo articulo al blog.
+        Añade un nuevo post
     </p>  
     <p *ngIf="is_edit">
-        Modifica el post {{post.title}}
+        Modifica el post <b>{{post.title}}</b>
     </p>  
 
     <!-- ALERTAS -->
@@ -60,6 +60,6 @@
             </angular-file-uploader>
         </div>
 
-        <input type="submit" value="Crear entradas" class="btn btn-success" [disabled]="postNewForm.invalid">
+        <input type="submit" value="Guardar" class="btn btn-success" [disabled]="postNewForm.invalid">
     </form>
 </div>

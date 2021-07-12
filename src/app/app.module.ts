@@ -16,7 +16,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
-import { CategoryListComponent } from './components/category/category-list/category-list.component';
+import { CategoryIndexComponent } from './components/category/category-index/category-index.component';
 import { CategoryCreateComponent } from './components/category/category-create/category-create.component';
 import { CategoryPostComponent } from './components/category/category-post/category-post.component';
 import { PostListComponent } from './components/category/post-list/post-list.component';
@@ -38,7 +38,7 @@ import {IdentityGuard} from './services/identity.guard';
     HomeComponent,
     ErrorComponent,
     UserEditComponent,
-    CategoryListComponent,
+    CategoryIndexComponent,
     CategoryCreateComponent,
     CategoryPostComponent,
     PostListComponent,
