@@ -53,6 +53,9 @@ export class AppComponent implements OnInit, DoCheck {
         // if(this.identity && this.identity.sub){ //Solo si esta autenticado
         //     this.getCategories();
         // }
+
+        //MANTENEMOS ESTO, YA QUE DEBEMOS LEER LAS VARIABLES IDENTITY Y TOKEN PARA ACTUALIZAR LA BARRA DE NAVEGACION
+        this.loadUser();
     }
 
     getCategoriesWithSetInterval(){ 

@@ -9,7 +9,8 @@ export class IdentityGuard implements CanActivate{
       private _userService: UserService
    ){}
 
-   canActivate(){
+   canActivate(params){
+      console.log(params);
       let identity = this._userService.getIdentity();
 
       if(identity){

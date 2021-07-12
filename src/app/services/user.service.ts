@@ -32,6 +32,7 @@ export class UserService{
     }
 
     signup(user, getToken = false): Observable<any>{
+        //Esto envia el flag para que obtenga el token decodificado
         if(getToken == true){
             user.getToken = true;
         }
