@@ -11,7 +11,7 @@ import {global} from '../../../services/global';
     selector: 'app-post-create',
     templateUrl: './post-create.component.html',
     styleUrls: ['./post-create.component.css'],
-    providers: [UserService, PostService] //ESTO ES MUY IMPORTANTE, SIN CARGARLO EN LOS PROVIDERS NO FUNCIONARA
+    providers: [UserService, CategoryService, PostService] //ESTO ES MUY IMPORTANTE, SIN CARGARLO EN LOS PROVIDERS NO FUNCIONARA
 })
 export class PostCreateComponent implements OnInit {
     
@@ -94,7 +94,7 @@ export class PostCreateComponent implements OnInit {
                 //OBTENEMOS INFORMACION DE RESPUESTA
                 if(response.status == "success"){          
                     this.status = "success";
-                    form.reset();          
+                    this.clearForm(form);          
                     this._router.navigate(['/post/create']);
                 }else{
                     this.status = "error";
@@ -114,9 +114,10 @@ export class PostCreateComponent implements OnInit {
 
                 //OBTENEMOS CATEGORIAS
                 if(response.status == 'success'){
-                    this.categories = response.categories;
-                    this.cargarCombo(response);
+                    this.categories = response.categories;                    
                     console.log("CATEGORIAS:", this.categories);
+
+                    this.cargarCombo(response);
                 }
 
             },
@@ -132,6 +133,21 @@ export class PostCreateComponent implements OnInit {
         this.post.image = data.image;    
     }
 
+    /**
+     * Uso de form.controls en lugar de form.reset
+     * @link https://stackoverflow.com/questions/50197347/how-to-reset-only-specific-fields-of-form-in-angular-5
+     */
+    clearForm(form){
+        // console.log('form', form);
+        // form.reset();        
+        form.controls['title'].reset();        
+        form.controls['content'].reset();   
+        // form.controls['category_id'].reset(); //Esto no queremos resetear
+    }
+
+    /**
+     * Metodo para cargar el combo con el primer elemento del array
+     */
     cargarCombo(response){
         if(this.is_edit == false){
             this.post.category_id = response.categories[0].id; //De este modo el combo Categorias, mostrara siempre el primer elemento solo si es vista crear

@@ -78,34 +78,6 @@ export class CategoryPostComponent implements OnInit {
                 }
             );
         });
-    }
-
-    getPosts(){
-        this._postService.getPosts().subscribe(
-            response => {
-                if(response.status == 'success'){
-                    this.posts = response.posts;
-                    console.log('POSTS:', this.posts);
-                }
-            },
-            error => {        
-                console.log(<any>error);
-            }
-        );
-    }
-
-    deletePost(id){
-        this._postService.delete(id, this.token).subscribe(
-            response => {
-                if(response.status == 'success'){          
-                    console.log('RESPONSE DELETE:', response);
-                    this.getPosts();          
-                }
-            },
-            error => {        
-                console.log(<any>error);
-            }
-        )
-    }
+    }    
 
 }

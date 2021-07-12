@@ -79,7 +79,7 @@ export class CategoryCreateComponent implements OnInit {
         // console.log('form', form);
         // form.reset();        
         form.controls['name'].reset();
-        // form.controls['date_publication'].reset();
+        // form.controls['date_publication'].reset(); //Esto no queremos resetear
     }
 
 }

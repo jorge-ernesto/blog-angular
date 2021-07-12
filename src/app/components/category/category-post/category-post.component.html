@@ -6,12 +6,12 @@
    <h1>{{category.name}}</h1>
    <hr>
    
+   <!-- NAV DE CATEGORIAS -->
+   <app-category-nav-item></app-category-nav-item>
+
    <div class="alert alert-warning" *ngIf="posts && posts.length == 0">
       No hay entradas en esta categoria
    </div>
-
-   <!-- NAV DE CATEGORIAS -->
-   <app-category-nav-item></app-category-nav-item>
 
    <!-- LISTADO DE POSTS -->
    <post-list [posts]="posts"

@@ -11,7 +11,7 @@ import {global} from '../../../services/global';
     selector: 'app-post-edit',
     templateUrl: './../post-create/post-create.component.html',
     styleUrls: ['./../post-create/post-create.component.css'],
-    providers: [UserService, PostService] //ESTO ES MUY IMPORTANTE, SIN CARGARLO EN LOS PROVIDERS NO FUNCIONARA
+    providers: [UserService, CategoryService, PostService] //ESTO ES MUY IMPORTANTE, SIN CARGARLO EN LOS PROVIDERS NO FUNCIONARA
 })
 export class PostEditComponent implements OnInit {
     
@@ -116,9 +116,8 @@ export class PostEditComponent implements OnInit {
 
                 //OBTENEMOS CATEGORIAS
                 if(response.status == 'success'){
-                  this.categories = response.categories;
-                  this.cargarCombo(response);
-                  console.log("CATEGORIAS:", this.categories);
+                    this.categories = response.categories;                     
+                    console.log("CATEGORIAS:", this.categories);
                 }
 
             },
@@ -132,12 +131,6 @@ export class PostEditComponent implements OnInit {
         console.log("Datos:",JSON.stringify(datos));
         let data = datos.body;
         this.post.image = data.image;    
-    }
-
-    cargarCombo(response){
-        if(this.is_edit == false){
-            this.post.category_id = response.categories[0].id; //De este modo el combo Categorias, mostrara siempre el primer elemento solo si es vista crear
-        }        
     }
 
     getPost(){

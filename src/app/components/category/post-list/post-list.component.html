@@ -9,31 +9,30 @@
       </div>
 
       <div class="card-body">
-         <!-- imagen -->
+         <!-- Imagen -->
          <div class="post-image-mask w-100" *ngIf="post.image">
             <img src="{{ url + 'post/image/' + post.image }}" class="w-100" alt="">
          </div>            
 
          <div class="post-image-mask w-100" *ngIf="!post.image">
             <img src="https://via.placeholder.com/1200" class="w-100" alt="">
-         </div>            
+         </div>   
+         <!-- Cerrar Imagen -->         
          
-         <!-- botones de accion -->
+         <!-- Botones Leer, Editar y Borrar -->
          <div class="post-buttons mt-3">
-            <!-- boton leer -->
             <a [routerLink]="['/post', post.id]" class="btn btn-success mr-2">Leer</a>
-            
-            <!-- boton editar, borrar -->
+                       
             <span *ngIf="identity && identity.sub == post.user.id">
-               <a [routerLink]="['/post', post.id, 'edit']" class="btn btn-warning mr-2">Editar</a>
-               <!-- <a (click)="deletePost(post.id)" class="btn btn-danger">Borrar</a> -->
+               <a [routerLink]="['/post', post.id, 'edit']" class="btn btn-warning mr-2">Editar</a>               
                
-               <!-- Button trigger modal -->
+               <!-- Boton para mostrar modal -->
                <button type="button" class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#exampleModal'+post.id"> <!-- data-target="#exampleModal{{post.id}}" --> <!-- Se uso attr.data-target de Angular 10 para que funcione la llamada a los modals -->
                   Borrar
                </button>
+               <!-- Cerrar Boton para mostrar modal -->
                
-               <!-- Modal -->
+               <!-- Modal para eliminar post -->
                <div class="modal fade" id="exampleModal{{post.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                   <div class="modal-content">
@@ -48,15 +47,16 @@
                      </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-                        <a (click)="deletePost(post.id)" class="btn btn-danger" data-dismiss="modal">Borrar</a> <!-- Se le agrego el data-dismiss en el enlace para borrar ya que sin ello se queda el background del modal -->
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deletePost(post.id)">Borrar</button> <!-- Se le agrego el data-dismiss en el enlace para borrar ya que sin ello se queda el background del modal -->
                      </div>
                   </div>
                   </div>
                </div>
+               <!-- Cerrar Modal para eliminar post -->
 
             </span>
          </div>
+         <!-- Cerrar Botones Leer, Editar y Borrar -->
       </div>
       
    </div>
