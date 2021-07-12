@@ -1,6 +1,5 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import {UserService} from './services/user.service';
-import {CategoryService} from './services/category.service';
 import {global} from './global';
 
 //TODOS LOS PLUGINS DE FROALA
@@ -21,7 +20,7 @@ import 'froala-editor/js/third_party/embedly.min';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
-    providers: [UserService, CategoryService]
+    providers: [UserService]
 })
 export class AppComponent implements OnInit, DoCheck {
     
@@ -34,7 +33,6 @@ export class AppComponent implements OnInit, DoCheck {
 
     constructor(
         public _userService: UserService,
-        public _categoryService: CategoryService
     ){
         this.loadUser();
         this.url = global.url;
@@ -44,37 +42,11 @@ export class AppComponent implements OnInit, DoCheck {
     ngOnInit(){
         console.log("ngOnInit carga despues de constructor");
         console.log("Webapp cargada correctamente");        
-        
-        this.getCategoriesWithSetInterval();
     }  
 
     ngDoCheck(){
-        //NO USAMOS ESTE METODO YA QUE NGDOCHECK SE RECARGA CADA SEGUNDO HACIENDO PETICIONES HTTP, LO CUAL PUEDE SER NO TAN CONVENIENTE
-        // this.loadUser();
-        // if(this.identity && this.identity.sub){ //Solo si esta autenticado
-        //     this.getCategories();
-        // }
-
         //MANTENEMOS ESTO, YA QUE DEBEMOS LEER LAS VARIABLES IDENTITY Y TOKEN PARA ACTUALIZAR LA BARRA DE NAVEGACION
         this.loadUser();
-    }
-
-    getCategoriesWithSetInterval(){ 
-        //TRAEMOS AL INICIAR LA APLICACION LA DATA DE CATEGORIAS
-        this.loadUser();
-        if(this.identity && this.identity.sub){ //Solo si esta autenticado
-            this.getCategories();
-        }
-
-        //EJECUTAMOS LA ACTUALIZACION DE CATEGORIAS CADA 30 SEGUNDOS
-        this.interval = setInterval(function(){
-          
-            this.loadUser();
-            if(this.identity && this.identity.sub){ //Solo si esta autenticado        
-                this.getCategories();
-            }
-
-        }.bind(this), 30000);    
     }
 
     loadUser(){
@@ -86,17 +58,4 @@ export class AppComponent implements OnInit, DoCheck {
         // console.log('TOKEN:',this.token);
     }
 
-    getCategories(){
-        this._categoryService.getCategories().subscribe(
-            response => {
-                if(response.status == "success"){
-                    this.categories = response.categories;
-                    // console.log('categories', this.categories);
-                }        
-            },
-            error => {
-                console.log(<any>error);
-            }
-        )
-    }
 }
