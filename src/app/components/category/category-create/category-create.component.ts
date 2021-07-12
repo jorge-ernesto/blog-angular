@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import {UserService} from '../../services/user.service';
-import {Category} from '../../models/category'; 
-import {CategoryService} from '../../services/category.service';
-import {global} from '../../services/global';
+import {UserService} from '../../../services/user.service';
+import {Category} from '../../../models/category'; 
+import {CategoryService} from '../../../services/category.service';
+import {global} from '../../../services/global';
 
 declare var jQuery:any;
 declare var $:any;
 
 @Component({
-    selector: 'app-category-new',
-    templateUrl: './category-new.component.html',
-    styleUrls: ['./category-new.component.css'],
+    selector: 'app-category-create',
+    templateUrl: './category-create.component.html',
+    styleUrls: ['./category-create.component.css'],
     providers: [UserService, CategoryService]
 })
-export class CategoryNewComponent implements OnInit {
+export class CategoryCreateComponent implements OnInit {
     
     public page_title: string;  
     public identity;

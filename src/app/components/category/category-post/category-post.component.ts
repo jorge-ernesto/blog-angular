@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import {Category} from '../../models/category'; 
-import {CategoryService} from '../../services/category.service';
-import {UserService} from '../../services/user.service';
-import {PostService} from '../../services/post.service';
-import {global} from '../../services/global';
+import {Category} from '../../../models/category'; 
+import {CategoryService} from '../../../services/category.service';
+import {UserService} from '../../../services/user.service';
+import {PostService} from '../../../services/post.service';
+import {global} from '../../../services/global';
 
 @Component({
-    selector: 'app-category-detail',
-    templateUrl: './category-detail.component.html',
-    styleUrls: ['./category-detail.component.css'],
+    selector: 'app-category-post',
+    templateUrl: './category-post.component.html',
+    styleUrls: ['./category-post.component.css'],
     providers: [CategoryService, UserService, PostService]
 })
-export class CategoryDetailComponent implements OnInit {
+export class CategoryPostComponent implements OnInit {
     
     public page_title: string;
     public identity;

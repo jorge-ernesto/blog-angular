@@ -7,12 +7,15 @@ import {RegisterComponent} from './components/register/register.component';
 import {HomeComponent} from './components/home/home.component';
 import {ErrorComponent} from './components/error/error.component';
 import {UserEditComponent} from './components/user-edit/user-edit.component';
-import {CategoryNewComponent} from './components/category-new/category-new.component';
-import {PostNewComponent} from './components/post-new/post-new.component';
-import {PostDetailComponent} from './components/post-detail/post-detail.component';
-import {PostEditComponent} from './components/post-edit/post-edit.component';
-import {CategoryDetailComponent} from './components/category-detail/category-detail.component';
 import {ProfileComponent} from './components/profile/profile.component';
+
+import {CategoryListComponent} from './components/category/category-list/category-list.component';
+import {CategoryCreateComponent} from './components/category/category-create/category-create.component';
+import {CategoryPostComponent} from './components/category/category-post/category-post.component';
+
+import {PostCreateComponent} from './components/post/post-create/post-create.component';
+import {PostEditComponent} from './components/post/post-edit/post-edit.component';
+import {PostDetailComponent} from './components/post/post-detail/post-detail.component';
 
 //IMPORTAMOS GUARDS
 import {DefaultGuard} from './services/default.guard';
@@ -27,15 +30,17 @@ const APP_ROUTES: Routes = [
     {path: 'home'        , component: HomeComponent    , canActivate: [DefaultGuard]},
     {path: 'register'    , component: RegisterComponent, canActivate: [DefaultGuard]},
     {path: 'ajustes'     , component: UserEditComponent, canActivate: [IdentityGuard]},
+    {path: 'perfil/:id'  , component: ProfileComponent , canActivate: [DefaultGuard]},
 
-    {path: 'crear-categoria'   , component: CategoryNewComponent   , canActivate: [IdentityGuard]},
-    {path: 'categoria/:id'     , component: CategoryDetailComponent, canActivate: [DefaultGuard]},
-    {path: 'crear-entrada'     , component: PostNewComponent       , canActivate: [IdentityGuard]},
-    {path: 'entrada/:id'       , component: PostDetailComponent    , canActivate: [DefaultGuard]},
-    {path: 'editar-entrada/:id', component: PostEditComponent      , canActivate: [IdentityGuard]},    
+    {path: 'category'          , component: CategoryListComponent, canActivate: [IdentityGuard]},
+    {path: 'category/create'   , component: CategoryCreateComponent , canActivate: [IdentityGuard]},
+    {path: 'category/posts/:id', component: CategoryPostComponent, canActivate: [DefaultGuard]},
     
-    {path: 'perfil/:id'        , component: ProfileComponent       , canActivate: [DefaultGuard]},
-    {path: '**'                , component: ErrorComponent         , canActivate: [DefaultGuard]}
+    {path: 'post/create'       , component: PostCreateComponent     , canActivate: [IdentityGuard]},
+    {path: 'post/:id'          , component: PostDetailComponent  , canActivate: [DefaultGuard]},
+    {path: 'post/:id/edit'     , component: PostEditComponent    , canActivate: [IdentityGuard]},    
+        
+    {path: '**'                , component: ErrorComponent       , canActivate: [DefaultGuard]}
 ];
 
 //EXPORTAR CONFIGURACION

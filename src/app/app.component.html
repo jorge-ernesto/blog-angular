@@ -25,12 +25,16 @@
                         Categorias
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" [routerLink]="['/crear-categoria']">Crear categoria</a>
+                        <a class="dropdown-item" [routerLink]="['/category/create']">Crear categoria</a>
                         <div class="dropdown-divider"></div>                        
                         <span *ngFor="let category of categories">
-                            <a class="dropdown-item" [routerLink]="['/categoria', category.id]">{{category.name}}</a>
+                            <a class="dropdown-item" [routerLink]="['/category/posts', category.id]">{{category.name}}</a>
                         </span>                        
                     </div>
+                </li>
+
+                <li class="nav-item" routerLinkActive="active" *ngIf="identity && identity.sub">
+                    <a class="nav-link" [routerLink]="['/category']">Categorias <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
 
@@ -52,8 +56,8 @@
                         {{identity.name + ' ' + identity.surname}}                        
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" [routerLink]="['/crear-entrada']">Crear entrada</a>
-                        <a class="dropdown-item" [routerLink]="['/crear-categoria']">Crear categoria</a>
+                        <a class="dropdown-item" [routerLink]="['/post/create']">Crear entrada</a>
+                        <a class="dropdown-item" [routerLink]="['/categoria/create']">Crear categoria</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" [routerLink]="['/perfil', identity.sub]">Mi perfil</a>
                         <a class="dropdown-item" [routerLink]="['/ajustes']">Ajustes</a>

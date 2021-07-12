@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import {UserService} from '../../services/user.service';
-import {CategoryService} from '../../services/category.service';
-import {PostService} from '../../services/post.service';
+import {UserService} from '../../../services/user.service';
+import {CategoryService} from '../../../services/category.service';
+import {PostService} from '../../../services/post.service';
 import {Category} from 'src/app/models/category';
-import {Post} from '../../models/post';
-import {global} from '../../services/global';
+import {Post} from '../../../models/post';
+import {global} from '../../../services/global';
 
 @Component({
-    selector: 'app-post-new',
-    templateUrl: './post-new.component.html',
-    styleUrls: ['./post-new.component.css'],
+    selector: 'app-post-edit',
+    templateUrl: './../post-create/post-create.component.html',
+    styleUrls: ['./../post-create/post-create.component.css'],
     providers: [UserService, PostService] //ESTO ES MUY IMPORTANTE, SIN CARGARLO EN LOS PROVIDERS NO FUNCIONARA
 })
-export class PostNewComponent implements OnInit {
+export class PostEditComponent implements OnInit {
     
     public page_title: string;
     public identity;
@@ -63,30 +63,31 @@ export class PostNewComponent implements OnInit {
         }
     };
 
-    constructor(        
+    constructor(
         private _route: ActivatedRoute,
-        private _router: Router,
-        private _userService: UserService,
+        private _router: Router,        
+        private _userService: UserService,    
         private _categoryService: CategoryService,
         private _postService: PostService,    
     ) { 
-        this.page_title = "Crear una entrada";
+        this.page_title = "Editar entrada";
         this.url = global.url;
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
-        this.is_edit = false;
+        this.is_edit = true;
     }
 
     ngOnInit(): void {
         this.post = new Post(1, this.identity.sub, 1, '', '', null);
         this.getCategories();
+        this.getPost();
     }
 
     onSubmit(form){
         this.status = "";
         
         //ENVIAMOS INFORMACION DE POST Y TOKEN
-        this._postService.create(this.post, this.token).subscribe(
+        this._postService.update(this.post, this.post.id, this.token).subscribe(
             response => {
               
                 console.log('RESPONSE:', JSON.stringify(response));
@@ -94,8 +95,10 @@ export class PostNewComponent implements OnInit {
                 //OBTENEMOS INFORMACION DE RESPUESTA
                 if(response.status == "success"){          
                     this.status = "success";
-                    form.reset();          
-                    this._router.navigate(['/crear-entrada']);
+                    //this.post = response.post; //Realmente no es necesario
+                    //this._router.navigate(['/inicio']);
+                    //this._router.navigate(['/editar-entrada', this.post.id]);          
+                    this._router.navigate(['/entrada', this.post.id]);          
                 }else{
                     this.status = "error";
                 }
@@ -114,8 +117,8 @@ export class PostNewComponent implements OnInit {
 
                 //OBTENEMOS CATEGORIAS
                 if(response.status == 'success'){
-                    this.categories = response.categories;
-                    console.log("CATEGORIAS:", this.categories);
+                  this.categories = response.categories;
+                  console.log("CATEGORIAS:", this.categories);
                 }
 
             },
@@ -129,6 +132,47 @@ export class PostNewComponent implements OnInit {
         console.log("Datos:",JSON.stringify(datos));
         let data = datos.body;
         this.post.image = data.image;    
+    }
+
+    getPost(){
+        //SACAR EL ID DEL POST DE LA URL
+        this._route.params.subscribe(params => {
+            let id = +params['id']; //+ para indicarle que es integer
+            //console.log(id);
+
+            //PETICION AJAX PARA SACAR LOS DATOS DEL POST
+            this._postService.getPost(id).subscribe(
+                response => {
+                  
+                    //OBTENEMOS LOS DATOS DEL POST
+                    if(response.status == "success"){                                  
+                        this.post = response.post;
+                        console.log('POST:', this.post);   
+                        
+                        this.validarDueñoPost(this.identity, this.post);
+                    }else{                                             
+                        this._router.navigate(['/inicio']);
+                    }        
+
+                },
+                error => {          
+                    console.log(<any>error);          
+                    this._router.navigate(['/inicio']);
+                }
+            )
+        });
+    }
+    
+    validarDueñoPost(identity, post){
+        // console.log("validarDueñoPost");
+        // console.log(identity);
+        // console.log(token);
+        // return;
+        if(identity && identity.sub == post.user_id){
+            return true
+        }else{
+            this._router.navigate(['/error']);
+        }
     }
 
 }
