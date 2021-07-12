@@ -55,4 +55,11 @@ export class CategoryService{
 
         return this._http.put(this.url+'category/'+id, params, {headers: headers});
     }
+
+    delete(id, token):Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+                                        .set('Authorization', token);
+        
+        return this._http.delete(this.url+'category/'+id, {headers: headers});
+    }
 }

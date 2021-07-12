@@ -105,4 +105,24 @@ export class CategoryIndexComponent implements OnInit {
         this.getCategoriesPaginate(this.page, this.search);
     }
 
+    /**
+     * Metodo para eliminar categorias
+     */
+    deleteCategory(id){
+        // console.log('deleteCategory')
+        // console.log(id, this.token)
+
+        this._categoryService.delete(id, this.token).subscribe(
+            response => {
+                if(response.status == 'success'){          
+                    console.log('RESPONSE DELETE:', response);
+                    this.getCategoriesPaginate(this.page, this.search);
+                }
+            },
+            error => {        
+                console.log(<any>error);
+            }
+        );
+    }
+
 }
