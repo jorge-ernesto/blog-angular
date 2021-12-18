@@ -20,7 +20,7 @@ export class PostListComponent implements OnInit {
         private _userService: UserService,
         private _postService: PostService,
     ) { 
-        this.token = _userService.getToken();
+        this.token = this._userService.getToken();
     }
 
     ngOnInit(): void {

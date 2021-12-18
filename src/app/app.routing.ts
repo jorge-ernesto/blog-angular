@@ -3,11 +3,11 @@ import {Routes, RouterModule} from '@angular/router';
 
 //IMPORTAR COMPONENTES
 import {LoginComponent} from './components/login/login.component';
-import {RegisterComponent} from './components/register/register.component';
 import {HomeComponent} from './components/home/home.component';
-import {ErrorComponent} from './components/error/error.component';
+import {RegisterComponent} from './components/register/register.component';
 import {UserEditComponent} from './components/user-edit/user-edit.component';
 import {ProfileComponent} from './components/profile/profile.component';
+import {ErrorComponent} from './components/error/error.component';
 
 import {CategoryIndexComponent} from './components/category/category-index/category-index.component';
 import {CategoryCreateComponent} from './components/category/category-create/category-create.component';
